@@ -19,6 +19,9 @@ module.exports = {
           900: '#1e3a8a',
         },
         space: {
+          dark: '#0a0e27',
+          navy: '#1e3a8a',
+          blue: '#3b82f6',
           50: '#f8fafc',
           100: '#f1f5f9',
           200: '#e2e8f0',
@@ -29,11 +32,20 @@ module.exports = {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a',
+        },
+        
+        cosmic: {
+          purple: '#8b5cf6',
+          glow: '#60a5fa' ,  
         }
       },
       fontFamily: {
         'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
         'display': ['Space Grotesk', 'Inter', 'ui-sans-serif'],
+      },
+      fontSize: {
+        'hero': ['clamp(4rem, 15vw, 12rem)', { lineHeight: '1', fontWeight: '800' }],
+        'subtitle': ['1.125rem', { lineHeight: '1.75', fontWeight: '300' }],
       },
       backgroundImage: {
         'space-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
