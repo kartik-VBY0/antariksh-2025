@@ -42,12 +42,16 @@ const Navbar = () => {
           >
             {/* here we need logo instead of text */}
             <Link to="/" className="text-white text-2xl font-bold tracking-wider">
-              <img src="/logo192.png" alt="Incridea Logo" className="h-8" />
+              <img 
+                src="/logo512.png" 
+                alt="Incridea Logo" 
+                className="h-60 transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.8)] hover:brightness-110 hover:contrast-110" 
+              />
             </Link>
           </motion.div>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Navigation Links - Centered */}
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -70,7 +74,7 @@ const Navbar = () => {
           </div>
 
           {/* Login Button */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -84,7 +88,7 @@ const Navbar = () => {
                 Login
               </motion.button>
             </Link>
-          </motion.div>
+          </motion.div> */}
 
           {/* Mobile Menu Button */}
           <MobileMenuButton />
