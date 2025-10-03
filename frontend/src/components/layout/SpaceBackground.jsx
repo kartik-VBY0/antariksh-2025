@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
+import RotatingBackground from './RotatingBackground';
 
 const SpaceBackground = ({ 
   speedFactor = 0.05, 
   starColor = [255, 255, 255], 
-  starCount = 5000 
+  starCount = 5000,
+  rotatingBgProps = {} // Allow customization of rotating background
 } = {}) => {
   const canvasRef = useRef(null);
 
@@ -114,21 +116,30 @@ const SpaceBackground = ({
   }, [speedFactor, starColor, starCount]);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Moving Starfield Canvas */}
+    <div className="fixed inset-0 -z-10 overflow-hidden" style={{ backgroundColor: '#000011' }}>
+      {/* Sliding Background Image - Bottom Layer */}
+      <RotatingBackground 
+        imagePath="/rotatingbg.png"
+        slidingSpeed={120}
+        opacity={0.4}
+        {...rotatingBgProps}
+      />
+      
+      {/* Moving Starfield Canvas - Top Layer */}
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0"
         style={{ 
           pointerEvents: 'none',
           mixBlendMode: 'screen',
-          backgroundColor: '#000000' // Dark space background
+          backgroundColor: 'transparent',
+          zIndex: 1 // Ensure stars are above sliding background
         }}
       ></canvas>
       
       {/* Additional glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
+      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div> */}
     </div>
   );
 };
