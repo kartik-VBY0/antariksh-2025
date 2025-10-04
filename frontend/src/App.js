@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 // import HeroSection from './components/sections/HeroSection';
-import SpaceBackground from './components/layout/SpaceBackground';
+import SpaceBackground from './Pages/homePage';
 
 function App() {
   return (

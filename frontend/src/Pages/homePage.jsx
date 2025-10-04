@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import RotatingBackground from './RotatingBackground';
-import Button from '../ui/Button';
+import RotatingBackground from '../components/layout/RotatingBackground';
+// import Button from '../ui/Button';
 
 const SpaceBackground = ({ 
   speedFactor = 0.05, 
