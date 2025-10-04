@@ -128,10 +128,6 @@ const SpaceBackground = ({
       />
       
       {/* Moving Starfield Canvas - Top Layer */}
-
-<Button  redirectTo="https://google.com" icon={<span>👉</span>}>
-  Google
-</Button>
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0"

@@ -1,14 +1,14 @@
-// Navbar.jsx
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
 const NAV_HEIGHT = 96;
 
+//add more link here
 const navItems = [
   { name: "Home", path: "/" },
   { name: "Events", path: "/events" },
-  { name: "Proshow", path: "/proshow" },
+  { name: "Gallery", path: "/gallery" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -159,9 +159,6 @@ export default function Navbar() {
             />
           </Link>
         </div>
-
-
-
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center justify-around gap-12">
               {navItems.map((item, i) => (
