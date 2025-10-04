@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import RotatingBackground from './RotatingBackground';
+import Button from '../ui/Button';
 
 const SpaceBackground = ({ 
   speedFactor = 0.05, 
   starColor = [255, 255, 255], 
   starCount = 5000,
-  rotatingBgProps = {} // Allow customization of rotating background
+  rotatingBgProps = {} 
 } = {}) => {
   const canvasRef = useRef(null);
 
@@ -116,6 +117,7 @@ const SpaceBackground = ({
   }, [speedFactor, starColor, starCount]);
 
   return (
+
     <div className="fixed inset-0 -z-10 overflow-hidden" style={{ backgroundColor: '#000011' }}>
       {/* Sliding Background Image - Bottom Layer */}
       <RotatingBackground 
@@ -126,6 +128,10 @@ const SpaceBackground = ({
       />
       
       {/* Moving Starfield Canvas - Top Layer */}
+
+<Button  redirectTo="https://google.com" icon={<span>👉</span>}>
+  Google
+</Button>
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0"
