@@ -10,6 +10,7 @@ const navItems = [
   { name: "Events", path: "/events" },
   { name: "Gallery", path: "/gallery" },
   { name: "Contact", path: "/contact" },
+  { name: "About Us", path: "/about" },
 ];
 
 const overlayVariants = {

@@ -3,6 +3,7 @@ import { BrowserRouter} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 // import HeroSection from './components/sections/HeroSection';
 import SpaceBackground from './Pages/homePage';
+import Footer from './components/layout/footer';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Navbar />
         <SpaceBackground />
       </div>
+      <Footer/>
     </BrowserRouter>
   );
 }
