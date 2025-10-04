@@ -5,6 +5,15 @@ const HeroSection = () => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center text-center z-20 px-6">
       
+      {/* Floating Astronaut */}
+      <motion.img
+        src="/astronaut.png"
+        alt="Astronaut"
+        className="absolute top-10 md:top-20 left-1/4 w-40 md:w-60 lg:w-72 drop-shadow-2xl"
+        animate={{ y: [0, -20, 0], rotate: [-5, 5, -5] }}
+        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
+      />
+
 
       {/* Main Title */}
       <motion.h1
