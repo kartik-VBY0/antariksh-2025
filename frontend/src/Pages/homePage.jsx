@@ -1,12 +1,15 @@
 import { useEffect, useRef } from 'react';
 import RotatingBackground from '../components/layout/RotatingBackground';
-// import Button from '../ui/Button';
+import HeroSection from '../components/page.component/con1.homePage';
+import HomeSections from '../components/page.component/con2.homePage';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/footer';
 
-const SpaceBackground = ({ 
-  speedFactor = 0.05, 
-  starColor = [255, 255, 255], 
+const Home1 = ({
+  speedFactor = 0.05,
+  starColor = [255, 255, 255],
   starCount = 5000,
-  rotatingBgProps = {} 
+  rotatingBgProps = {},
 } = {}) => {
   const canvasRef = useRef(null);
 
@@ -22,85 +25,62 @@ const SpaceBackground = ({
       canvas.width = w;
       canvas.height = h;
     };
-
     setCanvasExtents();
 
-    // Create 3D stars
     const makeStars = (count) => {
       const out = [];
       for (let i = 0; i < count; i++) {
-        const s = {
+        out.push({
           x: Math.random() * 1600 - 800,
           y: Math.random() * 900 - 450,
           z: Math.random() * 1000,
-        };
-        out.push(s);
+        });
       }
       return out;
     };
 
     let stars = makeStars(starCount);
 
-    const clear = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    };
+    const clear = () => ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const putPixel = (x, y, brightness) => {
-      const rgb = `rgba(${starColor[0]}, ${starColor[1]}, ${starColor[2]}, ${brightness})`;
-      ctx.fillStyle = rgb;
+      ctx.fillStyle = `rgba(${starColor[0]}, ${starColor[1]}, ${starColor[2]}, ${brightness})`;
       ctx.fillRect(x, y, 1, 1);
     };
 
     const moveStars = (distance) => {
-      const count = stars.length;
-      for (let i = 0; i < count; i++) {
-        const s = stars[i];
+      for (let s of stars) {
         s.z -= distance;
-        while (s.z <= 1) {
-          s.z += 1000;
-        }
+        if (s.z <= 1) s.z += 1000;
       }
     };
 
     let prevTime;
 
-    const init = (time) => {
-      prevTime = time;
-      requestAnimationFrame(tick);
-    };
-
     const tick = (time) => {
+      if (!prevTime) prevTime = time;
       const elapsed = time - prevTime;
       prevTime = time;
 
       moveStars(elapsed * speedFactor);
-
       clear();
 
       const cx = w / 2;
       const cy = h / 2;
 
-      const count = stars.length;
-      for (let i = 0; i < count; i++) {
-        const star = stars[i];
+      for (let s of stars) {
+        const x = cx + s.x / (s.z * 0.001);
+        const y = cy + s.y / (s.z * 0.001);
+        if (x < 0 || x >= w || y < 0 || y >= h) continue;
 
-        const x = cx + star.x / (star.z * 0.001);
-        const y = cy + star.y / (star.z * 0.001);
-
-        if (x < 0 || x >= w || y < 0 || y >= h) {
-          continue;
-        }
-
-        const d = star.z / 1000.0;
+        const d = s.z / 1000.0;
         const b = 1 - d * d;
-
         putPixel(x, y, b);
       }
 
       requestAnimationFrame(tick);
     };
 
-    // Handle resize
     const handleResize = () => {
       w = window.innerWidth;
       h = window.innerHeight;
@@ -108,42 +88,43 @@ const SpaceBackground = ({
     };
 
     window.addEventListener('resize', handleResize);
+    requestAnimationFrame(tick);
 
-    requestAnimationFrame(init);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, [speedFactor, starColor, starCount]);
 
   return (
+    <>
+    <Navbar/>
+      {/* Background Layer */}
+      <div
+        className="fixed inset-0 -z-10 overflow-hidden"
+        style={{ backgroundColor: '#000011' }}
+      >
+        <RotatingBackground
+          imagePath="/rotatingbg.png"
+          slidingSpeed={120}
+          opacity={0.4}
+          {...rotatingBgProps}
+        />
 
-    <div className="fixed inset-0 -z-10 overflow-hidden" style={{ backgroundColor: '#000011' }}>
-      {/* Sliding Background Image - Bottom Layer */}
-      <RotatingBackground 
-        imagePath="/rotatingbg.png"
-        slidingSpeed={120}
-        opacity={0.4}
-        {...rotatingBgProps}
-      />
-      
-      {/* Moving Starfield Canvas - Top Layer */}
-      <canvas 
-        ref={canvasRef} 
-        className="absolute inset-0"
-        style={{ 
-          pointerEvents: 'none',
-          mixBlendMode: 'screen',
-          backgroundColor: 'transparent',
-          zIndex: 1 // Ensure stars are above sliding background
-        }}
-      ></canvas>
-      
-      {/* Additional glow effects */}
-      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div> */}
-    </div>
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0"
+          style={{
+            pointerEvents: 'none',
+            mixBlendMode: 'screen',
+            backgroundColor: 'transparent',
+            zIndex: 1,
+          }}
+        />
+      </div>
+          <HeroSection />
+      <HomeSections />
+      <Footer />
+
+    </>
   );
 };
 
-export default SpaceBackground;
+export default Home1;
