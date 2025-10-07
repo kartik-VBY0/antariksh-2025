@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import RotatingBackground from '../components/layout/RotatingBackground';
-import HeroSection from '../components/page.component/con1.homePage';
-import HomeSections from '../components/page.component/con2.homePage';
+import HeroSection from '../components/sections/con1.homePage';
+import HomeSections from '../components/sections/con2.homePage';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/footer';
 
