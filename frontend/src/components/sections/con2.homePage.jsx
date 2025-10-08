@@ -80,7 +80,7 @@ const HomeSections = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          Society & Culture at <span className="text-blue-400">Antariksh</span>
+          Culture at <span className="text-blue-400">Antariksh</span>
         </motion.h2>
 
         <motion.p
