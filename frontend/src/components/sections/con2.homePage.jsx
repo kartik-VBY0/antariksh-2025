@@ -5,30 +5,30 @@ import Button from '../ui/Button';
 
 const homepageEvents = [
   {
-    title: "Astro Quiz",
-    description: "Test your space knowledge in our cosmic quiz challenge.",
-    image: "https://blog.olivierlarose.com/_next/image?url=%2Fmedias%2Ftutorials%2F3d-earth%2Fcolor.jpg&w=3840&q=75",
-    details: "Full details about Astro Quiz...",
+    title: "Astrohunt",
+    description: "Team-based treasure hunt where teams solve astronomy-related clues to reach the final destination.",
+    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938895/ChatGPT_Image_Oct_8_2025_09_24_20_PM_pkmux6.png",
+    details: "Team-based event (2-3 members). In this event there will be a prelims for treasure hunt, where teams have to solve clues related to astronomy to find the next location and finally reach the final location as fast as they can. After clearing the prelims, they will enter the final round which will be a webhunt, where the team has to solve clues on their computer through the internet, enter their answers, and solve all the questions as fast as they can.",
   },
   {
-    title: "Cosmic Workshop",
-    description: "Hands-on experience with space tech and simulations.",
-    image: "https://blog.olivierlarose.com/_next/image?url=%2Fmedias%2Ftutorials%2F3d-earth%2Fcolor.jpg&w=3840&q=75",
-    details: "Full details about Cosmic Workshop...",
+    title: "Astroarena",
+    description: "A Squid Game-inspired team event with space-themed elimination challenges.",
+    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938217/ChatGPT_Image_Oct_8_2025_08_34_09_PM_uzbdsw.png",
+    details: "Team-based event (2-3 members) inspired by Squid Games, where each round will be an elimination round. After passing through multiple rounds, one team finally wins the game. Each round is designed with a fun astro twist, making the competition engaging and challenging.",
   },
   {
-    title: "Star Night",
-    description: "Experience live astronomical observations under the stars.",
-    image: "https://blog.olivierlarose.com/_next/image?url=%2Fmedias%2Ftutorials%2F3d-earth%2Fcolor.jpg&w=3840&q=75",
-    details: "Full details about Star Night...",
+    title: "Prakshepan",
+    description: "Design and launch your own water bottle rocket with creativity and precision.",
+    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938564/ChatGPT_Image_Oct_8_2025_09_18_54_PM_m8fkfa.png",
+    details: "Team-based Water Bottle Rocket event (2-3 members). In the prelims, teams have to bring their designs and materials for their rockets and present their ideas. The best concepts will advance to the final round, where teams will actually build and launch their rockets. They will be judged on flight time, distance covered, and their ability to keep a payload (an egg) safe.",
   },
 ];
 
 const galleryImages = [
+  "https://res.cloudinary.com/doejabjai/image/upload/v1759935972/WhatsApp_Image_2025-10-08_at_8.33.05_PM_ndfoov.jpg",
   "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
   "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
-  "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
-  "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
+  "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/WhatsApp_Image_2025-10-08_at_8.33.07_PM_mzzarb.jpg",
 
 ];
 
