@@ -38,6 +38,80 @@ const HomeSections = () => {
 
   return (
     <div className="relative w-full overflow-hidden">
+
+
+      {/* --- Society and   Culture Section --- */}
+      <section className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col items-center text-center overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-black/70 to-black/90"
+          animate={{ opacity: [0.8, 1, 0.8] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Rings which is around there  */}
+        <motion.div
+          className="absolute w-[500px] h-[500px] border border-blue-400/30 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute w-[800px] h-[800px] border border-blue-400/10 rounded-full"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Floating Rocket */}
+        <motion.svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 64 64"
+          className="w-24 h-24 mb-10 text-blue-400 z-10 drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]"
+          fill="currentColor"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+        >
+          <path d="M32 2c-3 3-6 10-6 18s3 15 6 18c3-3 6-10 6-18S35 5 32 2zm0 24a6 6 0 110-12 6 6 0 010 12z" />
+          <path d="M27 43c-1 4-2 8-2 10 0 4 2 6 7 6s7-2 7-6c0-2-1-6-2-10h-10z" />
+          <path d="M25 35l-5 4c-5-2-9-2-11 1 3 1 6 3 8 5 2 3 3 6 3 8 3-2 4-6 5-11l4-5zm14 0l5 4c5-2 9-2 11 1-3 1-6 3-8 5-2 3-3 6-3 8-3-2-4-6-5-11l-4-5z" />
+        </motion.svg>
+
+        <motion.h2
+          className="text-4xl md:text-5xl font-extrabold text-white mb-6 z-10 tracking-wide"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+        >
+          Society & Culture at <span className="text-blue-400">Antariksh</span>
+        </motion.h2>
+
+        <motion.p
+          className="max-w-3xl text-lg md:text-xl text-white/80 leading-relaxed z-10 font-light"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          The vibrant community of <span className="text-blue-400 font-semibold">NIT Kurukshetra</span> stands at
+          the intersection of technology and tradition. Here, ideas ignite and cultures converge — from
+          innovation clubs to space societies, every student fuels the spirit of <em>Antariksh</em> through
+          creativity, collaboration, and cosmic curiosity.
+        </motion.p>
+        <motion.div
+          className="mt-12 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        />
+        <motion.div
+          className="absolute bottom-10 left-1/2 w-3 h-3 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+          animate={{ y: [0, -20, 0], x: [0, 5, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-10 right-1/2 w-2 h-2 bg-blue-300 rounded-full shadow-[0_0_6px_rgba(147,197,253,0.6)]"
+          animate={{ y: [0, -15, 0], x: [0, -5, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </section>
+
       
       {/* --- About Section --- */}
       <section className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
@@ -133,7 +207,7 @@ const HomeSections = () => {
 </section>
 
 
-      {/* --- Event Modal --- */}
+      {/* --- Event Modal---- add the element above --- */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
