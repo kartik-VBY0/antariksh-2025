@@ -189,40 +189,39 @@ const HomeSections = () => {
       </motion.section>
 
       {/* --- Gallery Section -don't change you can make changes in resources --- */}
-<section className="py-20 my-10 md:py-32 px-6 md:px-20 relative">
-  {/* Transparent box wrapping entire section */}
-  <div className="absolute inset-0 m-4 b bg-blue-400/10 rounded-2xl z-0 pointer-events-none shadow-lg"></div>
+<motion.section
+className="py-20 my-10 md:py-32 px-6 md:px-20 relative"
+initial={{ opacity: 0, y: 80 }}
+whileInView={{ opacity: 1, y: 0 }}
+transition={{ duration: 1 }}
+viewport={{ once: true }}
+>
+<div className="absolute inset-0 m-4 bg-blue-400/5 rounded-2xl z-0 pointer-events-none shadow-lg"></div>
 
-  <h2 className="text-3xl md:text-5xl font-extrabold text-white text-center mb-12 drop-shadow-lg relative z-10">
-    Memories <span className="text-blue-400">Gallery</span>
-  </h2>
-  
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 relative z-10">
-    {galleryImages.map((src, i) => (
-      <motion.div
-        key={i}
-        className="rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg"
-        whileHover={{ scale: 1.05 }}
-      >
-        <img
-          src={src}
-          alt={`Gallery ${i + 1}`}
-          className="w-full h-40 object-cover"
-        />
-      </motion.div>
-    ))}
-  </div>
+<h2 className="text-3xl md:text-5xl font-extrabold text-white text-center mb-12 drop-shadow-lg relative z-10">
+  Memories <span className="text-blue-400">Gallery</span>
+</h2>
 
-  <div className="mt-6 flex justify-center items-center relative z-10">
-    <Button
-      variant="primary"
-      size="md"
-      onClick={() => navigate('/gallery')}
+<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 relative z-10">
+  {galleryImages.map((src, i) => (
+    <motion.div
+      key={i}
+      className="relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+      whileHover={{ scale: 1.05 }}
     >
-      View More
-    </Button>
-  </div>
-</section>
+      <div className="absolute inset-0 bg-blue-400/20 rounded-2xl blur-xl z-0"></div>
+      <img src={src} alt={`Gallery ${i + 1}`} className="relative z-10 w-full h-40 object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 z-10"></div>
+    </motion.div>
+  ))}
+</div>
+
+<div className="mt-6 flex justify-center items-center relative z-10">
+  <Button variant="primary" size="md" onClick={() => navigate('/gallery')}>
+    View More
+  </Button>
+</div>
+</motion.section>
 
 
       {/* --- Event Modal---- add the element above --- */}
