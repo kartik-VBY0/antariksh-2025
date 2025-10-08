@@ -5,41 +5,82 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
 
 const teamMembers = [
-{
-name: "Aarav Sharma",
-role: "President",
-image: "",
-},
-{
-name: "Diya Patel",
-role: "Vice President",
-image: "",
-},
-{
-name: "Rohan Mehta",
-role: "Technical Head",
-image: "",
-},
-{
-name: "Sneha Iyer",
-role: "Event Coordinator",
-image: "",
-},
-{
-name: "Aditya Nair",
-role: "Outreach Lead",
-image: "",
-},
-{
-name: "Kavya Reddy",
-role: "Creative Lead",
-image: "",
-},
-{
-name: "Yash Verma",
-role: "Social Media Manager",
-image: "",
-},
+
+  {
+    name: "Garvit Gupta",
+    role: "President",
+    image: "",
+  },
+  {
+    name: "Diksha Dutta",
+    role: "Vice-President",
+    image: "",
+  },
+  {
+    name: "Jiya Agrawal",
+    role: "General-Secretary",
+    image: "",
+  },
+  {
+    name: "Yajat Rajput",
+    role: "Joint-Secretary",
+    image: "",
+  },
+  {
+    name: "Bhavya Arya",
+    role: "Newsletter & Khagol Head",
+    image: "",
+  },
+  {
+    name: "Kartik Saraswat",
+    role: "Quizzes Head",
+    image: "",
+  },
+  {
+    name: "Archit Chhajed",
+    role: "Newsletter Head",
+    image: "",
+  },
+  {
+    name: "Akshit Garg",
+    role: "Web Development Head",
+    image: "",
+  },
+  {
+    name: "Malavika Gupta",
+    role: "Content Writing Head",
+    image: "",
+  },
+  {
+    name: "Niknangra R. Marak",
+    role: "Video Editing Head",
+    image: "",
+  },
+  {
+    name: "Kamya",
+    role: "Social Media Head",
+    image: "",
+  },
+  {
+    name: "Mohammad Rahil",
+    role: "Graphic Design Head",
+    image: "",
+  },
+  {
+    name: "Aman Sharma",
+    role: "Discussion Head",
+    image: "",
+  },
+  {
+    name: "Ankit Kumar",
+    role: "Observation Astronomy Head",
+    image: "",
+  },
+  {
+    name: "Raghvi Gupta",
+    role: "Kalpa Head",
+    image: "",
+  },
 ];
 
 const About = () => {
