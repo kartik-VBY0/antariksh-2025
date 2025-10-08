@@ -114,15 +114,32 @@ const HomeSections = () => {
 
       
       {/* --- About Section --- */}
-      <section className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
-        <div className="md:w-1/2 flex justify-center">
+      <motion.section
+        className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <motion.div
+          className="md:w-1/2 flex justify-center"
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <img
             src="https://blog.olivierlarose.com/_next/image?url=%2Fmedias%2Ftutorials%2F3d-earth%2Fcolor.jpg&w=3840&q=75"
             alt="Antariksh Intro"
-            className="w-full max-w-sm md:max-w-lg rounded-3xl shadow-2xl"
+            className="w-full max-w-sm md:max-w-lg rounded-3xl shadow-[0_0_25px_rgba(59,130,246,0.3)]"
           />
-        </div>
-        <div className="md:w-1/2 bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl flex flex-col gap-4">
+        </motion.div>
+
+        <motion.div
+          className="md:w-1/2 bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl flex flex-col gap-4"
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             About <span className="text-blue-400">Antariksh</span>
           </h2>
@@ -130,15 +147,11 @@ const HomeSections = () => {
             Antariksh is the ultimate cosmic experience – combining events, workshops, and live performances 
             that bring the universe closer to you. Explore, learn, and celebrate the wonders of space with us.
           </p>
-          <Button
-            variant="primary"
-            size="md"
-            onClick={() => navigate('/about')}
-          >
+          <Button variant="primary" size="md" onClick={() => navigate('/about')}>
             Know More
           </Button>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* --- Events Section-- don't change you can make changes in resources --- */}
       <motion.section
