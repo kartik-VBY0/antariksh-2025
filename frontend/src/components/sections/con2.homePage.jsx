@@ -41,7 +41,7 @@ const HomeSections = () => {
 
 
       {/* --- Society and   Culture Section --- */}
-      <section className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col items-center text-center overflow-hidden">
+      <section className="relative py-20 md:py-40 px-6 md:px-20 flex flex-col items-center text-center overflow-hidden ">
         <motion.div
           className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-black/70 to-black/90"
           animate={{ opacity: [0.8, 1, 0.8] }}
