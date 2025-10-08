@@ -141,18 +141,26 @@ const HomeSections = () => {
       </section>
 
       {/* --- Events Section-- don't change you can make changes in resources --- */}
-      <section className="  px-6 md:px-20 bg-black/40 backdrop-blur-sm">
+      <motion.section
+        className="px-6 md:px-20 bg-black/40 backdrop-blur-sm py-20"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <h2 className="text-3xl md:text-5xl font-extrabold text-white text-center mb-12 drop-shadow-lg">
           Featured <span className="text-blue-400">Events</span>
         </h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {homepageEvents.map((event, i) => (
             <motion.div
               key={event.title}
               className="bg-white/10 backdrop-blur-md rounded-3xl p-6 flex flex-col justify-between shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: i * 0.2 }}
+              viewport={{ once: true }}
               onClick={() => setSelectedEvent(event)}
             >
               <img
@@ -168,7 +176,17 @@ const HomeSections = () => {
             </motion.div>
           ))}
         </div>
-      </section>
+
+        <div className="flex justify-center mt-12">
+          <Button
+            variant="secondary"
+            size="lg"
+            onClick={() => navigate('/events')}
+          >
+            See More Events →
+          </Button>
+        </div>
+      </motion.section>
 
       {/* --- Gallery Section -don't change you can make changes in resources --- */}
 <section className="py-20 my-10 md:py-32 px-6 md:px-20 relative">
