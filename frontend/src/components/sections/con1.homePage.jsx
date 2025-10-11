@@ -65,8 +65,9 @@ const HeroSection = () => {
           See Events
         </Button>
       </motion.div>
-
+    
     </div>
+
   );
 };
 

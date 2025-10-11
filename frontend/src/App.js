@@ -1,41 +1,52 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home1 from './pages/homePage';
 import Contact from './pages/contactPage';
-// import Navbar from './components/layout/Navbar';
-// import Footer from './components/layout/footer';
 import Gallery from './pages/galleryPage';
 import About from './pages/aboutPage';
-import EventPage from './pages/eventPage';
+// import EventPage from './pages/eventPage';
+import LayoutWrapper from './pages/LayoutWrapper';
+import NotFoundPage from './pages/NotFoundPage';
 
-const LayoutWrapper = () => (
-  <div className="relative min-h-screen overflow-hidden bg-black">
-    {/* Background should cover entire div */}
-
-    
-    {/* <Navbar className="relative z-10" /> */}
-    <main className="flex-grow relative z-10">
-      <Outlet />
-    </main>
-{/* 
-    <Footer className="relative z-10" /> */}
-  </div>
-);
-
+// Teams
+import KalpaPage from './pages/teams/kalpa.page';
+import ObservatoryPage from './pages/teams/observatory.page';
+import NewsletterPage from './pages/teams/newsletter.page';
+import DesignMediaPage  from './pages/teams/media.page';
+import WebTechPage from './pages/teams/tech.page';
+import CoreManagementPage from './pages/teams/management.page';
+import ManagementPage from './pages/teams/management.page';
+import KhagolQuizzingPage from './pages/teams/khagol.page';
+import DiscussionPage from './pages/teams/discussion.page';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Homepage without layout wrapper */}
         <Route path="/" element={<Home1 />} />
+
+        {/* Teams pages (no background if you want) */}
+
+
+        {/* Pages with global layout wrapper */}
         <Route element={<LayoutWrapper />}>
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
-          <Route path="/events" element={<EventPage />} />
+          {/* <Route path="/events" element={<EventPage />} /> */}
+          <Route path="/teams/observatory" element={<ObservatoryPage />} />
+          <Route path="/teams/kalpa" element={<KalpaPage />} />
 
-          {/* more pages */}
+        <Route path="/teams/newsletter" element={<NewsletterPage />} />
+        <Route path="/teams/design-media" element={<DesignMediaPage />} />
+        <Route path="/teams/web-tech" element={<WebTechPage />} />
+        <Route path="/teams/core-management" element={<CoreManagementPage />} />
+        <Route path="/teams/management" element={<ManagementPage />} />
+        <Route path="/teams/khagol-quizzing" element={<KhagolQuizzingPage />} />
+        <Route path="/teams/discussion" element={<DiscussionPage />} />
+        <Route path="*" element={<NotFoundPage />} />
         </Route>
+        
       </Routes>
     </BrowserRouter>
   );
