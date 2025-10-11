@@ -65,9 +65,9 @@ export default function Footer() {
 
             <div className="flex gap-5 mt-2">
               {[
-                { Icon: FaGithub, color: "hover:text-gray-300", href: "https://github.com/" },
-                { Icon: FaInstagram, color: "hover:text-pink-400", href: "https://instagram.com/" },
-                { Icon: FaLinkedin, color: "hover:text-blue-400", href: "https://linkedin.com/" },
+                { Icon: FaGithub, color: "hover:text-gray-300", href: "https://github.com/antariksh-nit-kurukshetra" },
+                { Icon: FaInstagram, color: "hover:text-pink-400", href: "https://www.instagram.com/antariksh_nitkkr/" },
+                { Icon: FaLinkedin, color: "hover:text-blue-400", href: "https://www.linkedin.com/company/antariksh-nit-kurukshetra?originalSubdomain=in" },
                 { Icon: FaYoutube, color: "hover:text-red-500", href: "https://youtube.com/" },
               ].map(({ Icon, color, href }, i) => (
                 <motion.a
