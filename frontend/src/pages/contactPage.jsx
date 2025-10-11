@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaEnvelope } from "react-icons/fa";
-import SlidingBackground from "../components/layout/RotatingBackground";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
 
@@ -23,11 +22,7 @@ link: "https://www.instagram.com/antariksh_nitkkr/",
 
   return (
     <>
-      {/* Background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
-        <SlidingBackground />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-black/70 to-black/90"></div>
-      </div>
+
 
       <Navbar />
 
