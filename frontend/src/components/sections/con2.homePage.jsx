@@ -32,6 +32,52 @@ const galleryImages = [
 
 ];
 
+const Teams = [
+      {
+        name: "Kalpa",
+        description: "The official astronomy & astrophysics magazine team of Antariksh.",
+        image:
+          "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/kalpa_poster_mock.jpg",
+        link: "/teams/kalpa",
+      },
+      {
+        name: "Observatory",
+        description: "The stargazing and research division conducting space observations and night sky sessions.",
+        image:
+          "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/observatory_mock.jpg",
+        link: "/teams/observatory",
+      },
+      {
+        name: "Newsletter",
+        description: "The creative minds curating the monthly cosmic digest, news, and Antariksh insights.",
+        image:
+          "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/newsletter_mock.jpg",
+        link: "/teams/newsletter",
+      },
+      {
+        name: "Design & Media",
+        description: "The artistic souls shaping visuals, posters, and media for all Antariksh events.",
+        image:
+          "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/design_team_mock.jpg",
+        link: "/teams/design",
+      },
+      {
+        name: "Web & Tech",
+        description: "The backbone of our digital cosmos — developers who power Antariksh online.",
+        image:
+          "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/web_team_mock.jpg",
+        link: "/teams/web",
+      },
+      {
+        name: "Core & Management",
+        description: "The team that plans, coordinates, and executes the Antariksh vision each year.",
+        image:
+          "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/core_team_mock.jpg",
+        link: "/teams/core",
+      },
+    ];
+
+
 const HomeSections = () => {
   const navigate = useNavigate();
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -113,45 +159,48 @@ const HomeSections = () => {
       </section>
 
       
-      {/* --- About Section --- */}
-      <motion.section
-        className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
-        <motion.div
-          className="md:w-1/2 flex justify-center"
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <img
-            src="https://blog.olivierlarose.com/_next/image?url=%2Fmedias%2Ftutorials%2F3d-earth%2Fcolor.jpg&w=3840&q=75"
-            alt="Antariksh Intro"
-            className="w-full max-w-sm md:max-w-lg rounded-3xl shadow-[0_0_25px_rgba(59,130,246,0.3)]"
-          />
-        </motion.div>
 
-        <motion.div
-          className="md:w-1/2 bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl flex flex-col gap-4"
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            About <span className="text-blue-400">Antariksh</span>
-          </h2>
-          <p className="text-white/80 text-lg md:text-xl leading-relaxed">
-            Antariksh is the ultimate cosmic experience – combining events, workshops, and live performances 
-            that bring the universe closer to you. Explore, learn, and celebrate the wonders of space with us.
-          </p>
-          <Button variant="primary" size="md" onClick={() => navigate('/about')}>
-            Know More
-          </Button>
-        </motion.div>
-      </motion.section>
+
+{/* --- About Section --- */}
+<motion.section
+  className="relative py-12 md:py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
+  initial={{ opacity: 0, y: 80 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+>
+  <motion.div
+    className="md:w-1/2 flex justify-center"
+    initial={{ opacity: 0, x: -60 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 1 }}
+  >
+    <img
+      src="https://blog.olivierlarose.com/_next/image?url=%2Fmedias%2Ftutorials%2F3d-earth%2Fcolor.jpg&w=3840&q=75"
+      alt="Antariksh Intro"
+      className="w-full max-w-sm md:max-w-lg rounded-3xl shadow-[0_0_25px_rgba(59,130,246,0.3)]"
+    />
+  </motion.div>
+
+  <motion.div
+    className="md:w-1/2 bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-10 shadow-xl flex flex-col gap-4"
+    initial={{ opacity: 0, x: 60 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 1 }}
+  >
+    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+      About <span className="text-blue-400">Antariksh</span>
+    </h2>
+    <p className="text-white/80 text-lg md:text-xl leading-relaxed">
+      Antariksh is the ultimate cosmic experience – combining events, workshops, and live performances 
+      that bring the universe closer to you. Explore, learn, and celebrate the wonders of space with us.
+    </p>
+    <Button variant="primary" size="md" onClick={() => navigate('/about')}>
+      Know More
+    </Button>
+  </motion.div>
+</motion.section>
+
 
       {/* --- Events Section-- don't change you can make changes in resources --- */}
       <motion.section
@@ -264,6 +313,77 @@ viewport={{ once: true }}
           </motion.div>
         )}
       </AnimatePresence>
+
+
+
+      {/* --- Teams Section --- */}
+<motion.section
+  className="relative  pb-40 px-6 md:px-20 overflow-hidden"
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+>
+  {/* Animated cosmic gradient background */}
+  <motion.div
+    className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-black/90 rounded-3xl"
+    animate={{ opacity: [0.8, 1, 0.8] }}
+    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+  />
+
+  <motion.h2
+    className="text-4xl md:text-5xl font-extrabold text-white text-center mb-16 drop-shadow-lg relative z-10"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+  >
+    Meet Our <span className="text-blue-400">Teams</span>
+  </motion.h2>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
+    {Teams.map((team, i) => (
+      <motion.div
+        key={team.name}
+        className="group relative bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-500"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: i * 0.15 }}
+        viewport={{ once: true }}
+        onClick={() => navigate(team.link)}
+      >
+        <div className="relative overflow-hidden">
+          <motion.img
+            src={team.image}
+            alt={team.name}
+            className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+          <motion.div
+            className="absolute bottom-0 p-6"
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-2">{team.name}</h3>
+            <p className="text-white/70 text-sm">{team.description}</p>
+          </motion.div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+
+  <motion.div
+    className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-blue-500/30 blur-[150px] rounded-full"
+    animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.6, 0.4] }}
+    transition={{ duration: 6, repeat: Infinity }}
+  />
+  <motion.div
+    className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/20 blur-[180px] rounded-full"
+    animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+    transition={{ duration: 8, repeat: Infinity }}
+  />
+</motion.section>
+
 
     </div>
   );
