@@ -32,9 +32,8 @@ setLoading(false);
 const categoryImages = images[selectedCategory] || [];
 
 return (
-<> <SlidingBackground className="absolute inset-0 -z-10" /> <Navbar />
+<><Navbar />
 
-```
   <section className="relative py-20 md:py-32 px-6 md:px-20 flex justify-center items-center">
     <div className="relative z-10 w-full max-w-6xl p-10 md:p-16 bg-white/10 border border-white/20 rounded-3xl shadow-lg backdrop-blur-xl">
       <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-white">
