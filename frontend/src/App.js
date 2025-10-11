@@ -18,6 +18,12 @@ import ManagementPage from './pages/teams/management.page';
 import KhagolQuizzingPage from './pages/teams/khagol.page';
 import DiscussionPage from './pages/teams/discussion.page';
 
+
+//blog
+import BlogPage from './pages/Blog/blogPage';
+import BlogDetailsPage from './pages/Blog/blogDetailsPage';
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -42,9 +48,15 @@ function App() {
         <Route path="/teams/web-tech" element={<WebTechPage />} />
         <Route path="/teams/core-management" element={<CoreManagementPage />} />
         <Route path="/teams/management" element={<ManagementPage />} />
-        <Route path="/teams/khagol-quizzing" element={<KhagolQuizzingPage />} />
+        <Route path="/teams/khagol" element={<KhagolQuizzingPage />} />
         <Route path="/teams/discussion" element={<DiscussionPage />} />
         <Route path="*" element={<NotFoundPage />} />
+
+
+
+        {/* Blog Pages */}
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogDetailsPage />} />
         </Route>
         
       </Routes>
