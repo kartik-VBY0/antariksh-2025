@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
 
 const HeroSection = () => {
-  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center text-center z-20 px-6 overflow-hidden">
       
@@ -59,17 +57,17 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 0.8 }}
         className="mt-8"
       >
-        <Button variant="primary" size="lg" onClick={() => navigate('/events')} icon={
+        <Button variant="primary" size="lg" icon={
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg> 
-          
+          </svg>
         }>
           See Events
         </Button>
       </motion.div>
-
+    
     </div>
+
   );
 };
 
