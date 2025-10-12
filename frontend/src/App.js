@@ -3,7 +3,7 @@ import Home1 from './pages/homePage';
 import Contact from './pages/contactPage';
 import Gallery from './pages/galleryPage';
 import About from './pages/aboutPage';
-// import EventPage from './pages/eventPage';
+import EventPage from './pages/eventPage';
 import LayoutWrapper from './pages/LayoutWrapper';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -22,8 +22,13 @@ import DiscussionPage from './pages/teams/discussion.page';
 //blog
 import BlogPage from './pages/Blog/blogPage';
 import BlogDetailsPage from './pages/Blog/blogDetailsPage';
+import AstroFactsPage from './pages/Blog/astroFacts';
 
 
+
+//Launchpad
+import LaunchpadPage from '../src/pages/launchpad/launchPadPage';
+// App Component with Routing
 function App() {
   return (
     <BrowserRouter>
@@ -39,7 +44,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
-          {/* <Route path="/events" element={<EventPage />} /> */}
+          <Route path="/events" element={<EventPage />} />
           <Route path="/teams/observatory" element={<ObservatoryPage />} />
           <Route path="/teams/kalpa" element={<KalpaPage />} />
 
@@ -57,6 +62,11 @@ function App() {
         {/* Blog Pages */}
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailsPage />} />
+        <Route path="/blog/facts" element={<AstroFactsPage />} />
+
+
+        {/* {LaunchpadPage} */}
+        <Route path="/launchpad" element={<LaunchpadPage />} />
         </Route>
         
       </Routes>
