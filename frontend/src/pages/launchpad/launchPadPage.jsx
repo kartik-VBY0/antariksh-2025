@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
+import { FaRocket } from "react-icons/fa";
 
 const LaunchPadPage = () => {
   const [allLaunches, setAllLaunches] = useState([]);
@@ -125,7 +126,7 @@ const LaunchPadPage = () => {
 
                   <div
                     className={`w-full md:w-5/12 z-10 ${
-                      isLeft ? "md:text-right md:pr-10" : "md:text-left md:pl-10"
+                      isLeft ? "md:text-left md:pr-10" : "md:text-left md:pl-10"
                     }`}
                   >
                     <motion.div
@@ -151,13 +152,13 @@ const LaunchPadPage = () => {
                   </div>
 
                   {/* Rocket marker */}
-                  <motion.div
-                    className="absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-400 to-cyan-400 w-14 h-14 rounded-full flex justify-center items-center shadow-[0_0_20px_rgba(59,130,246,0.9)] text-2xl"
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                    transition={{ type: "spring", stiffness: 200 }}
-                  >
-                    🚀
-                  </motion.div>
+<motion.div
+  className="absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-400 to-cyan-400 w-14 h-14 rounded-full flex justify-center items-center shadow-[0_0_20px_rgba(59,130,246,0.9)] text-2xl"
+  whileHover={{ scale: 1.2, rotate: 10 }}
+  transition={{ type: "spring", stiffness: 200 }}
+>
+  <FaRocket className="text-white text-3xl" />
+</motion.div>
                 </motion.div>
               );
             })}

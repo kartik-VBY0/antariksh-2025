@@ -23,6 +23,7 @@ import DiscussionPage from './pages/teams/discussion.page';
 import BlogPage from './pages/Blog/blogPage';
 import BlogDetailsPage from './pages/Blog/blogDetailsPage';
 import AstroFactsPage from './pages/Blog/astroFacts';
+import SpaceExplorationsPage from './pages/Blog/SpaceExplorationsPage';
 
 
 
@@ -63,6 +64,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailsPage />} />
         <Route path="/blog/facts" element={<AstroFactsPage />} />
+        <Route path="/blog/space" element={<SpaceExplorationsPage />} />
 
 
         {/* {LaunchpadPage} */}
