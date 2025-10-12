@@ -1,220 +1,287 @@
-import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Stars, useTexture, Html } from "@react-three/drei";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
+import SlidingBackground from "../components/layout/RotatingBackground";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Sample Event Data
-const upcomingEvents = [
+// --- Event Data ---
+const events = [
   {
+    id: 1,
     title: "Astrohunt",
-    date: "Oct 20, 2025",
-    description: "Solve astronomy clues in this thrilling team treasure hunt.",
+    date: "",
+    description: "Team-based treasure hunt where teams solve astronomy-related clues to reach the final destination.",
     image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938895/ChatGPT_Image_Oct_8_2025_09_24_20_PM_pkmux6.png",
-    route: "/events/astrohunt",
+    details: "Curious mind, hidden clues, and cosmic solutions! Astrophiles, do you love solving puzzles and answering riddles? Are you captivated by cosmic mysteries that make your mind wander into the deep realms of space? Antariksh presents you with Astrohunt. Gather your wits and dive deep into solving the cosmic riddles. Solve a riddle, find a clue, and move on to the next mystery. Each clue takes you to a different location. Be the first one to find your destination, be the first one to unravel the conundrums space holds. It is a race against time, are you fast enough?",
   },
   {
+    id: 2,
     title: "Astroarena",
-    date: "Oct 22, 2025",
-    description: "Squid Game inspired elimination event with cosmic twist.",
+    date: "",
+    description: "A Squid Game-inspired team event with space-themed elimination challenges.",
     image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938217/ChatGPT_Image_Oct_8_2025_08_34_09_PM_uzbdsw.png",
-    route: "/events/astroarena",
+    details: "Team-based event (2-3 members) inspired by Squid Games, where each round will be an elimination round. After passing through multiple rounds, one team finally wins the game. Each round is designed with a fun astro twist, making the competition engaging and challenging.",
+  },
+  {
+    id: 3,
+    title: "Prakshepan",
+    date: "",
+    description: "Design and launch your own water bottle rocket with creativity and precision.",
+    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938564/ChatGPT_Image_Oct_8_2025_09_18_54_PM_m8fkfa.png",
+    details: "Have you ever been dazzled by rockets piercing the blue skies? Don't you want to launch one yourself? We, here at Antariksh, organize an annual event as part of NIT Kurukshetra's tech fest, Techsparadha, called 'Prakshepan' - a water rocket event. It's an event where you push your limits to reach the Kármán line and conquer the depths of the cosmos. This event gives astrophiles a chance to witness Newton's third law of motion in action and to send their aspirations rocketing high into the sky. The event begins with practical workshops that introduce you to the world of rocket science, followed by fascinating preliminaries and the competitive and sky-high finals. Join us on a journey from the blue skies to the infinite with our cosmic family, 'Antariksh,' using your imaginative mind, skillful hands, and a willingness to learn.",
+  },
+  {
+    id: 4,
+    title: "Zathura",
+    date: "",
+    description: "Two-round event blends astrohunt with a space-themed board game for an unforgettable experience!",
+    image: "https://res.cloudinary.com/dkk4f02zv/image/upload/v1760292438/Gemini_Generated_Image_7s3fdo7s3fdo7s3f_jphpcz.png",
+    details: "Zathura- a thrilling game inspired by the timeless classic -‘Zathura’, is an astronomy-themed board game that takes you on a journey through the cosmos like never before! A team event that is designed to take you into the awe-inspiring depths of space, where you explore distant galaxies, discover celestial wonders, and conquer the challenges of the unknown universe. Your mission is to unravel the mysteries of the cosmos- from the birth of stars to exploring the dark mysteries of black holes, challenging your brains by solving mind-bending puzzles on physics and breathtaking cosmic phenomena like supernovae and nebulae, all while competing with fellow explorers to become the ultimate cosmic conqueror. We at Antariksh organize Zathura every year to attract space enthusiasts to embark on an exciting journey through the cosmos while testing their skills in the endless vastness and darkness of space.",
+
+  },
+  {
+    id: 5,
+    title: "Stellar Screens",
+    date: "",
+    description: "Two-round event blends astrohunt with a space-themed board game for an unforgettable experience!",
+    image: "https://res.cloudinary.com/dkk4f02zv/image/upload/v1760292304/Gemini_Generated_Image_8e65i98e65i98e65_ci6wcs.png",
+    details: "Cinema is a part of everybody's life, and the same goes for Antariksh. Here at Antariksh, we use it as a tool to dive into the mysteries of the cosmos and to explore the imagination of the human mind through science fiction and science shows. Throughout the year, Antariksh organizes screenings of various science shows and movies for the sci-fi fans of NIT Kurukshetra. Last year, we screened some episodes of one of the best science shows of all time, 'Cosmos: A Spacetime Odyssey.' The show took the audience on a cosmic journey, delving into the dimensions of fascinating scientific exploration and the mysteries of limitless space. Antariksh will always extend invitations to cosmic adventurers by organizing events such as 'The Stellar Screens' to explore the boundless dimensions of possibilities.",
+  },
+  {
+    id:6,
+    title: "Star Gazing",
+    date: "",
+    description: "Experience the wonders of the night sky with guided stargazing sessions using telescopes.",
+    image: "https://res.cloudinary.com/dkk4f02zv/image/upload/v1760292117/Gemini_Generated_Image_r5ajc5r5ajc5r5aj_f2cu6f.png",
+    details: "In the depth of the cosmos and vastness of space, lie numerous planets and stars which have intrigued the minds of humans since the beginning of their time. These celestial bodies make the universe as it is, and we, humans have always been curious to know them. The darkness of space is lightened by those stars that seem tiny but are gigantic. There are planets beyond Earth, that are the beauty of the cosmos’s creation. With various stargazing sessions of Antariksh, explore the realities of the cosmos, and know what lies beyond our planet. Learn to use telescopes, know to spot these heavenly objects, and become one of our stargazers.",
   },
 ];
 
-const techspardhaEvents = [
-  {
-    title: "Robotics Challenge",
-    date: "Nov 5, 2025",
-    description: "Build and program robots to complete tasks efficiently.",
-    image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    route: "/events/robotics-challenge",
-  },
-  {
-    title: "Coding Marathon",
-    date: "Nov 6, 2025",
-    description: "Solve real-world problems in a 24-hour hackathon.",
-    image: "https://cdn-icons-png.flaticon.com/512/1055/1055687.png",
-    route: "/events/coding-marathon",
-  },
-];
+// --- Rotating Earth Component ---
+function Earth() {
+  const earthRef = useRef();
+  const [texture] = useTexture(["/earth_texture.jpg"]);
 
-const workshops = [
-  {
-    title: "Telescope Making",
-    date: "Oct 28, 2025",
-    description: "Learn to craft your own telescope from scratch.",
-    image: "https://cdn-icons-png.flaticon.com/512/2932/2932672.png",
-    route: "/events/telescope-workshop",
-  },
-  {
-    title: "Astro Photography",
-    date: "Nov 1, 2025",
-    description: "Capture the stars with your own camera setup.",
-    image: "https://cdn-icons-png.flaticon.com/512/2922/2922263.png",
-    route: "/events/astro-photography",
-  },
-];
+  useFrame(() => {
+    earthRef.current.rotation.y += 0.002;
+  });
 
-// Star Background Component
-const StarBackground = () => {
-  const canvasRef = useRef(null);
+  return (
+    <mesh ref={earthRef} position={[0, 0, 0]}>
+      <sphereGeometry args={[4.0, 64, 64]} />
+      <meshStandardMaterial map={texture} />
+    </mesh>
+  );
+}
+
+// --- Floating Card Component ---
+function FloatingCard({ event, index, totalEvents, position, onClick }) {
+  const ref = useRef();
+  const [hover, setHover] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let w = window.innerWidth;
-    let h = window.innerHeight;
-    canvas.width = w;
-    canvas.height = h;
-
-    const stars = Array.from({ length: 5000 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      z: Math.random() * 1000,
-    }));
-
-    const drawStars = () => {
-      ctx.clearRect(0, 0, w, h);
-      stars.forEach((s) => {
-        const x = (s.x - w / 2) / (s.z * 0.001) + w / 2;
-        const y = (s.y - h / 2) / (s.z * 0.001) + h / 2;
-        const brightness = 1 - s.z / 1000;
-        ctx.fillStyle = `rgba(255,255,255,${brightness})`;
-        ctx.fillRect(x, y, 1, 1);
-        s.z -= 2;
-        if (s.z <= 0) s.z = 1000;
-      });
-      requestAnimationFrame(drawStars);
-    };
-    drawStars();
-
-    const handleResize = () => {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w;
-      canvas.height = h;
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-10" />;
-};
+  // Floating animation only for non-mobile
+  useFrame(({ clock }) => {
+    if (!isMobile) {
+      const t = clock.getElapsedTime();
+      ref.current.position.y = position[1] + Math.sin(t * 0.8) * 0.3;
+    }
+  });
 
-const EventsPage = () => {
-  const navigate = useNavigate();
+  // Mobile stacked positions
+  const finalPosition = isMobile
+    ? [
+        0, // center X
+        3 - index * 2, // vertical stacking
+        -2, // slightly in front
+      ]
+    : position;
 
-  const renderEventSection = (title, events) => (
-    <section className="py-16 px-6 md:px-20">
-      <motion.h2
-        className="text-3xl md:text-5xl font-extrabold text-white text-center mb-12 drop-shadow-lg"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+  return (
+    <group ref={ref} position={finalPosition} onClick={() => onClick(event)}>
+      <mesh
+        onPointerOver={() => !isMobile && setHover(true)}
+        onPointerOut={() => !isMobile && setHover(false)}
       >
-        {title}
-      </motion.h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {events.map((event, i) => (
-          <motion.div
-            key={i}
-            className="bg-white/10 backdrop-blur-md rounded-3xl p-6 flex flex-col justify-between shadow-lg hover:shadow-blue-400/50 cursor-pointer transform transition-all hover:scale-105"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: i * 0.1 }}
-            onClick={() => navigate(event.route)}
-          >
-            <img
-              src={event.image}
-              alt={event.title}
-              className="w-full h-48 md:h-56 object-cover rounded-2xl mb-4"
-            />
-            <div className="flex flex-col gap-2">
-              <h3 className="text-2xl font-bold text-white">{event.title}</h3>
-              <p className="text-white/70 text-sm">{event.date}</p>
-              <p className="text-white/80">{event.description}</p>
-            </div>
-            <motion.button
-              className="mt-4 px-6 py-2 rounded-full bg-blue-400 text-white font-semibold shadow-lg hover:shadow-blue-500/50 transition-transform hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate(event.route);
-              }}
-            >
-              Know More
-            </motion.button>
-          </motion.div>
-        ))}
-      </div>
-    </section>
+        <meshStandardMaterial
+          color={hover ? "#2563eb" : "#0f172a"}
+          transparent
+          opacity={0.85}
+          emissive={hover ? "#3b82f6" : "#000"}
+          emissiveIntensity={hover ? 0.6 : 0.2}
+        />
+      </mesh>
+      <Html zIndexRange={[0, 10]}>
+        <div onClick={() => onClick(event)}>
+          <HtmlCard event={event} />
+        </div>
+      </Html>
+    </group>
   );
+}
+
+// --- HTML Overlay for Event Info ---
+function HtmlCard({ event }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9, y: 10 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+      className="absolute bg-gray-800/90 text-white text-center p-3 rounded-xl border border-blue-400 shadow-md w-48 cursor-pointer select-none backdrop-blur-sm"
+      style={{ transform: "translate(-50%, -50%)", pointerEvents: "auto", zIndex: 20 }}
+    >
+      {event.image && (
+        <motion.img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-24 object-cover rounded-lg mb-2 border border-blue-500/30"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        />
+      )}
+      <p className="text-sm font-bold text-blue-300">{event.title}</p>
+      <p className="text-xs text-gray-300">{event.date}</p>
+      <p className="text-xs text-gray-400 mt-1">{event.description}</p>
+    </motion.div>
+  );
+}
+
+// --- Event Details Modal ---
+function EventDetailsModal({ event, onClose }) {
+  return (
+    <AnimatePresence>
+      {event && (
+        <motion.div
+          key="modal"
+          className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <motion.div
+            className="bg-gray-900 text-white p-6 rounded-2xl w-[90%] sm:w-[500px] border border-blue-500 shadow-lg"
+            initial={{ scale: 0.8, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.8, opacity: 0, y: 30 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <h2 className="text-xl font-bold text-blue-400 mb-2">{event.title}</h2>
+            <p className="text-sm text-gray-300 mb-1">{event.date}</p>
+            <p className="text-sm text-gray-400 mb-4">{event.details}</p>
+            <button
+              onClick={onClose}
+              className="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium"
+            >
+              Close
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// --- Main Page ---
+export default function EventPage() {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const positions = [
+    [6, 8, -4],
+    [-6, 4, 4],
+    [5, 3, 5],
+    [-5, 2, -5],
+    [0, 3, 6],
+    [0, -1, -7],
+  ];
 
   return (
     <>
       <Navbar />
-      <StarBackground />
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
+        <SlidingBackground />
+      </div>
 
-      {/* Hero Section */}
-      <section className="relative py-20 px-6 md:px-20 text-center overflow-hidden">
-        <motion.h1
-          className="text-4xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Explore <span className="text-blue-400">Events</span>
-        </motion.h1>
-        <motion.p
-          className="max-w-3xl text-white/80 text-lg md:text-xl mx-auto leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          Discover upcoming events, competitions, workshops, and more. Click on an event to
-          learn more and participate!
-        </motion.p>
-      </section>
+      {/* --- Desktop 3D Layout --- */}
+      {!isMobile && (
+        <section className="w-full h-screen">
+          <Canvas camera={{ position: [0, 3, 12], fov: 60 }}>
+            <ambientLight intensity={4.0} />
+            <pointLight position={[10, 10, 10]} intensity={2} />
+            <Stars
+              radius={100}
+              depth={80}
+              count={5000}
+              factor={4}
+              saturation={0}
+              fade
+              speed={1}
+            />
+            <Earth />
+            {events.map((event, i) => (
+              <FloatingCard
+                key={event.id}
+                event={event}
+                index={i}
+                totalEvents={events.length}
+                position={positions[i]}
+                onClick={setSelectedEvent}
+              />
+            ))}
+            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.3} />
+          </Canvas>
+        </section>
+      )}
 
-      {/* Sections */}
-      {renderEventSection("Upcoming Events", upcomingEvents)}
-      {renderEventSection("Techspardha Events", techspardhaEvents)}
-      {renderEventSection("Workshops & Learning", workshops)}
+      {/* --- Mobile Layout (Stacked Cards) --- */}
+      {isMobile && (
+        <section className="flex flex-col items-center w-full min-h-screen px-4 py-6 space-y-6 bg-black/80 backdrop-blur-sm">
+          {events.map((event) => (
+            <motion.div
+              key={event.id}
+              onClick={() => setSelectedEvent(event)}
+              className="bg-gray-800/90 text-white text-center p-4 rounded-2xl border border-blue-400 shadow-lg w-full max-w-sm cursor-pointer"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <img
+                src={event.image}
+                alt={event.title}
+                className="w-full h-32 object-cover rounded-lg mb-3 border border-blue-500/30"
+              />
+              <h3 className="text-lg font-bold text-blue-300">{event.title}</h3>
+              <p className="text-xs text-gray-300">{event.date}</p>
+              <p className="text-sm text-gray-400 mt-1">{event.description}</p>
+              <button className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white text-sm">
+                Know More
+              </button>
+            </motion.div>
+          ))}
+        </section>
+      )}
 
-      {/* CTA / Newsletter Section */}
-      <section className="py-20 px-6 md:px-20 text-center bg-white/5 backdrop-blur-md rounded-3xl mx-4 md:mx-20 my-16">
-        <motion.h2
-          className="text-3xl md:text-5xl font-extrabold text-white mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Join Our Newsletter
-        </motion.h2>
-        <motion.p
-          className="text-white/80 mb-6 max-w-xl mx-auto"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Stay updated on all events, workshops, and exclusive content from Antariksh Society.
-        </motion.p>
-        <motion.button
-          className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-400 text-white font-semibold shadow-lg hover:shadow-purple-500/50 transition-transform hover:scale-105"
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-        >
-          Subscribe Now
-        </motion.button>
-      </section>
-
+      <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
       <Footer />
     </>
   );
-};
-
-export default EventsPage;
+}
