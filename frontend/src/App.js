@@ -9,6 +9,7 @@ import About from './pages/aboutPage';
 import EventPage from './pages/eventPage';
 import LayoutWrapper from './pages/LayoutWrapper';
 import NotFoundPage from './pages/NotFoundPage';
+import PdfUpload from './pages/Upload_pdf/PdfUpload';
 
 // Teams
 import KalpaPage from './pages/teams/kalpa.page';
@@ -71,6 +72,9 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetailsPage />} />
         <Route path="/blog/facts" element={<AstroFactsPage />} />
         <Route path="/blog/space" element={<SpaceExplorationsPage />} />
+
+        {/* PDF Upload */}
+        <Route path="/upload-pdf" element={<PdfUpload />} />
 
         {/* contact */}
         <Route path='/user-contact' element={<ContactPage/>}/>
