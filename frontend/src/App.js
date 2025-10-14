@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+//import 
+import FloatingButtons from './components/layout/top';
+
 import Home1 from './pages/homePage';
 import Contact from './pages/contactPage';
 import Gallery from './pages/galleryPage';
@@ -35,6 +38,7 @@ import LaunchpadPage from '../src/pages/launchpad/launchPadPage';
 function App() {
   return (
     <BrowserRouter>
+          <FloatingButtons />
       <Routes>
         {/* Homepage without layout wrapper */}
         <Route path="/" element={<Home1 />} />

@@ -4,7 +4,7 @@ import HeroSection from '../components/sections/con1.homePage';
 import HomeSections from '../components/sections/con2.homePage';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/footer';
-
+import FloatingButtons from '../components/layout/top'
 const Home1 = ({
   speedFactor = 0.05,
   starColor = [255, 255, 255],
@@ -121,6 +121,7 @@ const Home1 = ({
       </div>
           <HeroSection />
       <HomeSections />
+      <FloatingButtons />
       <Footer />
 
     </>
