@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaArrowUp, FaInstagram, FaPlus, FaTimes, FaRegNewspaper } from "react-icons/fa";
 
-/**
- * 💫 FloatingButtons
- * - Expands on hover or click
- * - Auto-minimizes on scroll, outside click, or 5 s inactivity
- * - When minimized → reduced opacity
- * - Includes Go to Top, Instagram, and Newsletter
- */
 const FloatingButtons = () => {
   const [open, setOpen] = useState(false);
   const inactivityTimer = useRef(null);
@@ -40,14 +33,14 @@ const FloatingButtons = () => {
     },
   ];
 
-  // 1️⃣ Auto-close on scroll
+  //Auto-close on scroll
   useEffect(() => {
     const handleScroll = () => setOpen(false);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 2️⃣ Auto-close on click outside
+  // Auto-close on click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -58,7 +51,7 @@ const FloatingButtons = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  // 3️⃣ Auto-close after 5 s inactivity
+  // Auto-close after 5 s inactivity
   useEffect(() => {
     const resetTimer = () => {
       clearTimeout(inactivityTimer.current);
