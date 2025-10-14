@@ -25,6 +25,8 @@ import BlogDetailsPage from './pages/Blog/blogDetailsPage';
 import AstroFactsPage from './pages/Blog/astroFacts';
 import SpaceExplorationsPage from './pages/Blog/SpaceExplorationsPage';
 
+//contact
+import ContactPage from './pages/api/contact'
 
 
 //Launchpad
@@ -65,6 +67,9 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetailsPage />} />
         <Route path="/blog/facts" element={<AstroFactsPage />} />
         <Route path="/blog/space" element={<SpaceExplorationsPage />} />
+
+        {/* contact */}
+        <Route path='/user-contact' element={<ContactPage/>}/>
 
 
         {/* {LaunchpadPage} */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import SlidingBackground from "../components/layout/RotatingBackground";
+
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
 
