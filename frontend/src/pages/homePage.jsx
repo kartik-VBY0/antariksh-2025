@@ -102,7 +102,7 @@ const Home1 = ({
         style={{ backgroundColor: '#000011' }}
       >
         <RotatingBackground
-          imagePath="/rotatingbg.png"
+          imagePath="/blackbg.png"
           slidingSpeed={120}
           opacity={0.4}
           {...rotatingBgProps}
