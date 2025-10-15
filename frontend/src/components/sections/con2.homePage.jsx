@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
+import Robot3 from '../3d/Robot3';
+import Planet from '../3d/Planet';
 
 const homepageEvents = [
   {
@@ -147,6 +149,27 @@ const HomeSections = () => {
           innovation clubs to space societies, every student fuels the spirit of <em>Antariksh</em> through
           creativity, collaboration, and cosmic curiosity.
         </motion.p>
+{/* --- Left floating Robot3 --- */}
+<motion.div
+  className="absolute left-0 top-1/4 -translate-y-[10%] w-64 md:w-96 pointer-events-none z-10"
+  initial={{ opacity: 0, x: -100 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+>
+  <Robot3 />
+</motion.div>
+
+{/* --- Right floating Planet --- */}
+<motion.div
+  className="absolute right-0 top-1/4 -translate-y-[10%] w-64 md:w-96 pointer-events-none z-10"
+  initial={{ opacity: 0, x: 100 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+>
+  <Planet />
+</motion.div>
+
+
         <motion.div
           className="mt-12 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"
           initial={{ opacity: 0 }}

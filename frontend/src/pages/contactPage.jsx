@@ -16,6 +16,8 @@ import Footer from "../components/layout/footer";
 import { getFullDeviceInfo } from "../pages/api/getFullDeviceInfo";
 
 const Contact = () => {
+  const API_URL = process.env.REACT_APP_BACKEND_API_URL;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -64,12 +66,13 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async () => {
-    const API_URL = process.env.REACT_APP_BACKEND_API_URL;
+
     if (!formData.name || !formData.email || !formData.subject || !formData.message)
       return;
 
     setLoading(true);
     try {
+      console.log(API_URL)
       const response = await fetch(`${API_URL}/api/services/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

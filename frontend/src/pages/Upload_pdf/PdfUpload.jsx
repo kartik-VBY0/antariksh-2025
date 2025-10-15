@@ -3,6 +3,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const UploadPage = () => {
+    const API_URL = process.env.REACT_APP_BACKEND_API_URL;
   // Hardcoded credentials (same as backend)
   const ADMIN_USERNAME = "admin123";
   const ADMIN_PASSWORD = "secret@123";
@@ -36,7 +37,8 @@ const UploadPage = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3020/api/pdfs/upload", formData, {
+        console.log(API_URL)
+      const res = await axios.post(`${API_URL}/api/pdf/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           username: ADMIN_USERNAME,
