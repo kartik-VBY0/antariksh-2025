@@ -4,7 +4,7 @@ import { OrbitControls, Stars, Html, useTexture } from "@react-three/drei";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
-import SlidingBackground from "../components/layout/RotatingBackground";
+import StarBackground from "../components/layout/StarBackground"; // ✅ Import the star background
 
 // --- Categories ---
 const categories = ["Techspardha", "Observation Sessions", "Workshops", "Events", "Trips"];
@@ -49,22 +49,20 @@ function FloatingGalleryCard({ src, index, total, radius = 12, onClick }) {
       <Html zIndexRange={[0, 10]}>
         <div style={{ transform: "translate(-50%, -50%)", pointerEvents: "auto" }}>
           <motion.div
-  whileHover={{ scale: 1.1 }}
-  className="bg-gray-800 rounded-xl border border-blue-400 shadow-md w-80 h-80 flex items-center justify-center cursor-pointer"
->
-  <img
-    src={src}
-    alt="Gallery"
-    className="w-full h-full object-cover rounded-lg"
-  />
-</motion.div>
-
+            whileHover={{ scale: 1.1 }}
+            className="bg-gray-800 rounded-xl border border-blue-400 shadow-md w-80 h-80 flex items-center justify-center cursor-pointer"
+          >
+            <img
+              src={src}
+              alt="Gallery"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </motion.div>
         </div>
       </Html>
     </group>
   );
 }
-
 
 // --- Modal ---
 function GalleryModal({ src, onClose }) {
@@ -135,8 +133,9 @@ export default function GalleryPage() {
     <>
       <Navbar />
 
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
-        <SlidingBackground />
+      {/* ✅ Animated Star Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <StarBackground speedFactor={0.05} starCount={2500} />
       </div>
 
       <section className="relative py-20 md:py-32 px-6 md:px-20 flex flex-col items-center">
@@ -167,7 +166,8 @@ export default function GalleryPage() {
             <Canvas camera={{ position: [0, 5, 25], fov: 60 }}>
               <ambientLight intensity={2.5} />
               <pointLight position={[10, 10, 10]} intensity={2} />
-              <Stars radius={100} depth={80} count={5000} factor={4} saturation={0} fade speed={1} />
+              {/* Internal 3D Stars (subtle sparkle inside Canvas) */}
+              <Stars radius={100} depth={80} count={2000} factor={4} saturation={0} fade speed={0.5} />
               <Earth />
 
               {categoryImages.map((src, i) => (

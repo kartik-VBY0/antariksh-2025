@@ -86,8 +86,7 @@ const HeroSection = () => {
   animate={{ opacity: 1 }}
   transition={{ delay: 1.5, duration: 1 }}
   className="absolute inset-0 pointer-events-none z-10"
->
-  <Meteor />
+>  <Meteor />
 </motion.div>
 
 
