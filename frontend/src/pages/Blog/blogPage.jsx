@@ -24,9 +24,9 @@ const BlogPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-black min-h-screen font-mono text-gray-200 relative overflow-hidden">
+    <div className=" min-h-screen font-mono text-gray-200 relative overflow-hidden">
       <Navbar />
-      <div className="absolute inset-0 bg-gradient-to-b from-green-400/10 via-transparent to-black blur-3xl pointer-events-none" />
+      <div className="absolute  " />
 
       {/* Hero Section */}
       <section className="relative py-24 px-6 md:px-16 text-center">
@@ -36,7 +36,7 @@ const BlogPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Antariksh <span className="text-green-400">Blog</span>
+          Antariksh <span className="text-blue-400">Blog</span>
         </motion.h1>
         <motion.p
           className="max-w-3xl mx-auto text-gray-400 text-lg md:text-xl"
@@ -57,7 +57,7 @@ const BlogPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
-              className="bg-white/10 backdrop-blur-2xl rounded-3xl overflow-hidden shadow-lg hover:shadow-green-400/30 border border-white/10 transition-transform transform hover:-translate-y-2 cursor-pointer"
+              className="  rounded-3xl overflow-hidden shadow-lg hover:shadow-blue-400/30 border border-blue/10 transition-transform transform hover:-translate-y-2 cursor-pointer"
               onClick={() => navigate(`/blog/${post.id}`)}
             >
               <div className="relative">
@@ -66,12 +66,12 @@ const BlogPage = () => {
                   alt={post.title}
                   className="w-full h-52 object-cover"
                 />
-                <span className="absolute top-3 right-3 bg-green-500/80 text-black text-xs px-3 py-1 rounded-full">
+                <span className="absolute top-3 right-3 bg-blue-500/80 text-black text-xs px-3 py-1 rounded-full">
                   {post.tag}
                 </span>
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-2 hover:text-green-400 transition">
+                <h3 className="text-2xl font-bold text-white mb-2 hover:text-blue-400 transition">
                   {post.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-3">

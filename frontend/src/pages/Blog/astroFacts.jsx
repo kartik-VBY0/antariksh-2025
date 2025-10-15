@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
+import Button from "../../components/ui/Button";
 
 
 const astroFacts = [
@@ -100,7 +101,7 @@ const AstroFactsPage = () => {
       </section>
 
       {/* Fun CTA */}
-      <section className="py-16 px-6 md:px-20 text-center">
+      <section className="py-16 px-6 md:px-20 text-center justify-center items-center">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-white mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -117,17 +118,17 @@ const AstroFactsPage = () => {
         >
           Space is vast and full of mysteries. Keep exploring, and let the universe inspire you.
         </motion.p>
-        <motion.a
+        <Button 
           href="https://solarsystem.nasa.gov/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-400 text-white font-semibold shadow-lg hover:shadow-purple-500/50 transition-transform hover:scale-105"
+          className="px-6 py-3 rounded-full  transition-transform hover:scale-105"
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
         >
           Explore NASA →
-        </motion.a>
+        </Button>
       </section>
 
       <Footer />
