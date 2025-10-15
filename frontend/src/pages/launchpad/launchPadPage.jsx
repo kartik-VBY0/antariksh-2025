@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FaRocket } from "react-icons/fa";
+import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
-import { RocketLaunchIcon } from "@heroicons/react/24/solid";
-
 
 const LaunchPadPage = () => {
   const [launches, setLaunches] = useState([]);
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
+  const [scrollDistance, setScrollDistance] = useState(300); // in vh
+  const [motionRange, setMotionRange] = useState({ end: 0.7, offset: 20 }); // responsive motion config
 
   useEffect(() => {
     const fetchLaunches = async () => {
@@ -28,15 +28,71 @@ const LaunchPadPage = () => {
     fetchLaunches();
   }, []);
 
-  // Track page scroll progress
+  // ✅ Responsive rocket movement based on container height
+  useEffect(() => {
+    const updateScrollDistance = () => {
+      const vh = window.innerHeight;
+      const totalHeight = containerRef.current?.scrollHeight || 0;
+
+      // Convert pixel scrollable distance to vh (approx)
+      const vhDistance = (totalHeight / vh) * 100;
+
+      // Slightly less than full to keep rocket visible at the end
+      setScrollDistance(vhDistance * 0.9);
+    };
+
+    updateScrollDistance();
+    window.addEventListener("resize", updateScrollDistance);
+    return () => window.removeEventListener("resize", updateScrollDistance);
+  }, []);
+
+  // ✅ Adjust motion speed and offset by screen size
+  useEffect(() => {
+    const updateMotionRange = () => {
+      const width = window.innerWidth;
+
+      if (width < 640) {
+        // 📱 Mobile
+        setMotionRange({ end: 0.3, offset: 16 }); // moves faster
+      } else if (width < 1024) {
+        // 💻 Tablet
+        setMotionRange({ end: 0.3, offset: 15 });
+      } else {
+        // 🖥️ Desktop
+        setMotionRange({ end: 0.3, offset: 25 }); // slower, smoother
+      }
+    };
+
+    updateMotionRange();
+    window.addEventListener("resize", updateMotionRange);
+    return () => window.removeEventListener("resize", updateMotionRange);
+  }, []);
+
   const { scrollYProgress } = useScroll();
 
-  // ✅ Match rocket motion distance to section height (≈300vh)
-  // A small offset keeps the rocket slightly above the bottom
-  const rocketY = useTransform(scrollYProgress, [0, 1], ["0vh", "350vh"]);
+ const width = typeof window !== "undefined" ? window.innerWidth : 1200;
 
-  // Line grows fully with scroll
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
+// Adjust multiplier per screen
+let distanceMultiplier = 1; // default (desktop)
+if (width < 640) {
+  distanceMultiplier = 1.2; // 📱 mobile → faster
+} else if (width < 1024) {
+  distanceMultiplier = 1; // 💻 tablet → medium
+}
+
+// Then use it in your transform:
+const rocketY = useTransform(
+  scrollYProgress,
+  [0, motionRange.end],
+  ["0vh", `${scrollDistance * distanceMultiplier + motionRange.offset}vh`]
+);
+
+
+  const lineHeight = useTransform(
+    scrollYProgress,
+    [0, motionRange.end],
+    ["0%", `${100 * distanceMultiplier}%`]
+  );
 
   return (
     <>
@@ -61,10 +117,10 @@ const LaunchPadPage = () => {
       {/* TIMELINE SECTION */}
       <section
         ref={containerRef}
-        className="relative min-h-[300vh] px-6 md:px-16 bg-[#02021a] overflow-hidden"
+        className="relative min-h-[300vh] px-4 md:px-16 bg-[#02021a] overflow-hidden"
       >
         {/* Central glowing timeline */}
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[3px] h-full bg-gradient-to-b from-blue-500 via-cyan-400 to-purple-600 opacity-50"></div>
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[3px] h-full bg-gradient-to-b from-blue-500 via-cyan-400 to-purple-600 opacity-40"></div>
 
         {/* Dynamic glowing progress line */}
         <motion.div
@@ -72,14 +128,13 @@ const LaunchPadPage = () => {
           className="absolute left-1/2 top-0 -translate-x-1/2 w-[4px] bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-600 shadow-[0_0_25px_rgba(59,130,246,0.8)] rounded-full origin-top"
         ></motion.div>
 
-        {/* ✅ Rocket now moves at the same rate as glowing line */}
+        {/* 🚀 Rocket (moves smoothly with line, mobile friendly) */}
         <motion.div
-  style={{ y: rocketY }}
-  className="absolute left-[48%] -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex justify-center items-center shadow-[0_0_25px_rgba(59,130,246,0.9)]"
->
-  <RocketLaunchIcon className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)] rotate-[135deg]" />
-</motion.div>
-
+          style={{ y: rocketY }}
+          className="absolute left-1/2 -translate-x-1/2 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex justify-center items-center shadow-[0_0_25px_rgba(59,130,246,0.9)]"
+        >
+          <RocketLaunchIcon className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)] rotate-[135deg]" />
+        </motion.div>
 
         {/* Launch cards */}
         <div className="relative max-w-6xl mx-auto mt-40 space-y-40">
