@@ -13,13 +13,13 @@ const teamMembers = [
   { name: "Kartik Saraswat", role: "Quizzes Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525778/Kartik_Event_Head_tidw33.jpg" },
   { name: "Archit Chhajed", role: "Newsletter Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525769/Archit_Event_Head_rwtjxn.jpg" },
   { name: "Akshit Garg", role: "Web Development Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525772/Akshit_Event_Head_zcldln.jpg" },
-  { name: "Malavika Gupta", role: "Content Writing Head", image: "" },
-  { name: "Niknangra R. Marak", role: "Video Editing Head", image: "" },
-  { name: "Kamya", role: "Social Media Head", image: "" },
-  { name: "Mohammad Rahil", role: "Graphic Design Head", image: "" },
-  { name: "Aman Sharma", role: "Discussion Head", image: "" },
+  { name: "Malavika Gupta", role: "Content Writing Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760544925/WhatsApp_Image_2025-10-15_at_8.07.08_PM_vjrvmg.jpg" },
+  { name: "Niknangra R. Marak", role: "Video Editing Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760544827/WhatsApp_Image_2025-10-15_at_8.29.48_PM_ittqym.jpg" },
+  { name: "Kamya", role: "Social Media Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760545295/1000150831_wk5hy0.jpg" },
+  { name: "Mohammad Rahil", role: "Graphic Design Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760544914/IMG_20251015_194758_hsqr2m.jpg" },
+  { name: "Aman Sharma", role: "Discussion Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760544910/IMG_20240420_103340_2_bvx3n1.jpg" },
   { name: "Ankit Kumar", role: "Observation Astronomy Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1759940824/WhatsApp_Image_2025-10-08_at_9.56.20_PM_jr1vgq.jpg" },
-  { name: "Raghvi Gupta", role: "Kalpa Head", image: "" },
+  { name: "Raghvi Gupta", role: "Kalpa Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760545899/WhatsApp_Image_2025-10-15_at_5.26.22_PM_hudxfh.jpg" },
 ];
 
 export default function About() {

@@ -31,6 +31,7 @@ import SpaceExplorationsPage from './pages/Blog/SpaceExplorationsPage';
 
 //contact
 import ContactPage from './pages/api/contact'
+import BuiltByPage from './pages/extraPages/builtBy';
 
 
 //Launchpad
@@ -60,7 +61,7 @@ function App() {
         <Route path="/teams/design-media" element={<DesignMediaPage />} />
         <Route path="/teams/web-tech" element={<WebTechPage />} />
         <Route path="/teams/core-management" element={<CoreManagementPage />} />
-        <Route path="/teams/management" element={<ManagementPage />} />
+        <Route path="/teams/managxement" element={<ManagementPage />} />
         <Route path="/teams/khagol" element={<KhagolQuizzingPage />} />
         <Route path="/teams/discussion" element={<DiscussionPage />} />
         <Route path="*" element={<NotFoundPage />} />
@@ -78,6 +79,7 @@ function App() {
 
         {/* contact */}
         <Route path='/user-contact' element={<ContactPage/>}/>
+        <Route path='built-by' element={<BuiltByPage/>}/>
 
 
         {/* {LaunchpadPage} */}

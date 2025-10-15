@@ -114,7 +114,7 @@ const ObservatoryPage = () => {
   return (
     <>
       <Navbar />
-      <section className="py-20 px-6 md:px-16 bg-black text-center">
+      <section className="py-20 px-6 md:px-16 text-center">
         <motion.h1
           className="text-5xl font-extrabold text-white mb-4"
           initial={{ opacity: 0, y: -30 }}

@@ -24,7 +24,7 @@ const ManagementSponsorshipPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Management & <span className="text-yellow-400">Sponsorship</span>
+          Management & <span className="text-blue-400">Sponsorship</span>
         </motion.h1>
         <motion.p
           className="max-w-3xl text-white/90 text-lg md:text-xl leading-relaxed"
@@ -68,7 +68,7 @@ const ManagementSponsorshipPage = () => {
           ].map((item, i) => (
             <motion.div
               key={i}
-              className="bg-black/60 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-yellow-400/50 transition-transform transform hover:scale-105"
+              className="bg-black/60 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-blue-400/50 transition-transform transform hover:scale-105"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: i * 0.2 }}
@@ -82,37 +82,7 @@ const ManagementSponsorshipPage = () => {
       </section>
 
       {/* Postholders */}
-      <section className="py-20 px-6 md:px-16">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Meet the Team
-        </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {managementTeam.map((member, i) => (
-            <motion.div
-              key={i}
-              className="flex flex-col items-center text-white bg-black/60 backdrop-blur-lg rounded-2xl p-4 shadow-lg hover:shadow-yellow-400/30 transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.2 }}
-            >
-              <div className="w-24 h-24 mb-3">
-                <img
-                  src={member.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                  alt={member.name}
-                  className="w-full h-full rounded-full object-cover border-2 border-yellow-400"
-                />
-              </div>
-              <h4 className="font-semibold text-lg">{member.name}</h4>
-              <p className="text-yellow-300 text-sm">{member.role}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+
 
       {/* Call-to-action */}
       <section className="py-20 px-6 md:px-16 flex flex-col items-center text-center">
