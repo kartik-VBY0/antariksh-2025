@@ -53,13 +53,13 @@ const LaunchPadPage = () => {
 
       if (width < 640) {
         // 📱 Mobile
-        setMotionRange({ end: 0.3, offset: 16 }); // moves faster
+        setMotionRange({ end: 0.6, offset: 16 }); // moves faster
       } else if (width < 1024) {
         // 💻 Tablet
-        setMotionRange({ end: 0.3, offset: 15 });
+        setMotionRange({ end: 0.7, offset: 15 });
       } else {
         // 🖥️ Desktop
-        setMotionRange({ end: 0.3, offset: 25 }); // slower, smoother
+        setMotionRange({ end: 0.7, offset: 25 }); // slower, smoother
       }
     };
 
@@ -130,11 +130,11 @@ const rocketY = useTransform(
 
         {/* 🚀 Rocket (moves smoothly with line, mobile friendly) */}
         <motion.div
-          style={{ y: rocketY }}
-          className="absolute left-1/2 -translate-x-1/2 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex justify-center items-center shadow-[0_0_25px_rgba(59,130,246,0.9)]"
-        >
-          <RocketLaunchIcon className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)] rotate-[135deg]" />
-        </motion.div>
+  style={{ y: rocketY }}
+  className="absolute left-[48%] -translate-x-[70%] w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex justify-center items-center shadow-[0_0_25px_rgba(59,130,246,0.9)]"
+>
+  <RocketLaunchIcon className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)] rotate-[135deg]" />
+</motion.div>
 
         {/* Launch cards */}
         <div className="relative max-w-6xl mx-auto mt-40 space-y-40">
