@@ -5,20 +5,20 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
 
 const teamMembers = [
-  { name: "Garvit Gupta", role: "President", image: "" },
-  { name: "Diksha Dutta", role: "Vice-President", image: "" },
-  { name: "Jiya Agrawal", role: "General-Secretary", image: "" },
-  { name: "Yajat Rajput", role: "Joint-Secretary", image: "" },
-  { name: "Bhavya Arya", role: "Newsletter & Khagol Head", image: "" },
-  { name: "Kartik Saraswat", role: "Quizzes Head", image: "" },
-  { name: "Archit Chhajed", role: "Newsletter Head", image: "" },
-  { name: "Akshit Garg", role: "Web Development Head", image: "" },
+  { name: "Garvit Gupta", role: "President", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525778/Garvit_Convenor_mccjnm.jpg" },
+  { name: "Diksha Dutta", role: "Vice-President", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525770/Diksha_Co-convenor_x0pytn.jpg" },
+  { name: "Jiya Agrawal", role: "General-Secretary", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525779/Jiya_Co-convenor_iyyvpf.jpg" },
+  { name: "Yajat Rajput", role: "Joint-Secretary", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525806/Yajat_Co-convenor_bqhewt.jpg" },
+  { name: "Bhavya Arya", role: "Newsletter & Khagol Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525769/Bhavya_Event_Head_eeaor9.jpg" },
+  { name: "Kartik Saraswat", role: "Quizzes Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525778/Kartik_Event_Head_tidw33.jpg" },
+  { name: "Archit Chhajed", role: "Newsletter Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525769/Archit_Event_Head_rwtjxn.jpg" },
+  { name: "Akshit Garg", role: "Web Development Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1760525772/Akshit_Event_Head_zcldln.jpg" },
   { name: "Malavika Gupta", role: "Content Writing Head", image: "" },
   { name: "Niknangra R. Marak", role: "Video Editing Head", image: "" },
   { name: "Kamya", role: "Social Media Head", image: "" },
   { name: "Mohammad Rahil", role: "Graphic Design Head", image: "" },
   { name: "Aman Sharma", role: "Discussion Head", image: "" },
-  { name: "Ankit Kumar", role: "Observation Astronomy Head", image: "" },
+  { name: "Ankit Kumar", role: "Observation Astronomy Head", image: "https://res.cloudinary.com/doejabjai/image/upload/v1759940824/WhatsApp_Image_2025-10-08_at_9.56.20_PM_jr1vgq.jpg" },
   { name: "Raghvi Gupta", role: "Kalpa Head", image: "" },
 ];
 
