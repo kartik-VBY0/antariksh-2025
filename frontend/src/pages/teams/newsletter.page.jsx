@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 import Button from "../../components/ui/Button";
@@ -13,25 +12,13 @@ const newsletterTeam = [
   { name: "Bhavya Arya", role: "Creative Designer", image: "" },
 ];
 
+// List of PDFs in public folder
+const pdfs = [
+{ title: "Newsletter Oct 2024", url: "/EDITION 02 THE COSMIC EXPRESS.pdf" },
+  { title: "Newsletter Aug 2023", url: "/Edition 01 The Cosmic Express_compressed.pdf" },
+];
+
 const NewsletterPage = () => {
-  const [pdfs, setPdfs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch all PDFs
-  useEffect(() => {
-    const fetchPdfs = async () => {
-      try {
-        const res = await axios.get("http://localhost:3020/api/pdfs/all");
-        setPdfs(res.data);
-      } catch (err) {
-        console.error("Failed to fetch PDFs:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPdfs();
-  }, []);
-
   return (
     <>
       <Navbar />
@@ -56,7 +43,7 @@ const NewsletterPage = () => {
         </motion.p>
       </section>
 
-      {/* ✨ Latest Newsletters Section */}
+      {/* Latest Newsletters */}
       <section className="py-16 px-6 md:px-16 bg-black/80 backdrop-blur-sm rounded-3xl mx-4 md:mx-16">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
@@ -67,56 +54,55 @@ const NewsletterPage = () => {
           Latest Newsletters
         </motion.h2>
 
-        {loading ? (
-          <p className="text-white text-center text-lg">Loading PDFs...</p>
-        ) : pdfs.length === 0 ? (
-          <p className="text-white text-center text-lg">No newsletters uploaded yet.</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pdfs.map((pdf, i) => (
-              <motion.div
-                key={pdf._id || i}
-                className="bg-black/60 backdrop-blur-md p-6 rounded-2xl text-center text-white shadow-lg hover:shadow-blue-400/40 transition-transform transform hover:scale-105 flex flex-col justify-between"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-              >
-                <h3 className="text-xl font-bold mb-3">{pdf.title}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {pdfs.map((pdf, i) => (
+            <motion.div
+              key={i}
+              className="bg-black/60 backdrop-blur-md p-6 rounded-2xl text-center text-white shadow-lg hover:shadow-blue-400/40 transition-transform transform hover:scale-105 flex flex-col justify-between"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+            >
+              <h3 className="text-xl font-bold mb-3">{pdf.title}</h3>
 
-                {/* PDF Preview */}
-                <div className="w-full h-64 mb-4 overflow-hidden rounded-lg border border-white/20">
-                  <iframe
-                    src={`${pdf.url}#view=fitH`}
-                    title={pdf.title}
-                    className="w-full h-full"
-                  />
-                </div>
+              {/* PDF Preview */}
+              <div className="w-full h-64 mb-4 overflow-hidden rounded-lg border border-white/20">
+                <iframe
+                  src={`${pdf.url}#view=fitH`}
+                  title={pdf.title}
+                  className="w-full h-full"
+                />
+              </div>
 
-                <div className="flex justify-center gap-4 mt-2">
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => window.open(pdf.url, "_blank")}
-                    className="flex items-center gap-2"
-                  >
-                    <Eye size={16} /> View
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => window.open(pdf.url, "_blank")}
-                    className="flex items-center gap-2"
-                  >
-                    <FileDown size={16} /> Download
-                  </Button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+              <div className="flex justify-center gap-4 mt-2">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => window.open(pdf.url, "_blank")}
+                  className="flex items-center gap-2"
+                >
+                  <Eye size={16} /> View
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = pdf.url;
+                    link.download = pdf.title;
+                    link.click();
+                  }}
+                  className="flex items-center gap-2"
+                >
+                  <FileDown size={16} /> Download
+                </Button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
-      {/* What is Newsletter */}
+      {/* Newsletter Info */}
       <section className="py-16 px-6 md:px-16 flex flex-col md:flex-row items-center gap-10 bg-black/80 backdrop-blur-sm rounded-3xl mx-4 md:mx-16">
         <motion.div
           className="md:w-1/2"
@@ -125,7 +111,7 @@ const NewsletterPage = () => {
           transition={{ duration: 0.8 }}
         >
           <img
-            src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png"
+            src="https://res.cloudinary.com/doejabjai/image/upload/v1760505256/unnamed_bm3kax.jpg"
             alt="Newsletter"
             className="w-full max-w-md mx-auto rounded-2xl shadow-xl"
           />
