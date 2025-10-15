@@ -1,268 +1,165 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 
 // --- Data ---
-const members = [
-  { name: "Rahul Gupta", role: "Team Lead", img: "/assets/team/rahul.jpg" },
-  { name: "Sneha Patel", role: "Quiz Coordinator", img: "/assets/team/sneha.jpg" },
-  { name: "Aryan Mehta", role: "Research Head", img: "/assets/team/aryan.jpg" },
-  { name: "Riya Sharma", role: "Creative Writer", img: "/assets/team/riya.jpg" },
-];
-
 const missions = [
   {
-    title: "Cosmic Trivia",
-    desc: "Weekly challenges decoding mysteries of galaxies, planets, and fundamental physics. Test your deep-space knowledge!",
+    title: "Weekly Space Quizzes",
+    desc: "Every week, Khagol challenges your cosmic intellect with fresh, engaging quizzes—ranging from astronomy trivia and space history to the mysteries of galaxies and black holes.",
     icon: "🌌",
   },
   {
-    title: "AstroLeague",
-    desc: "Inter-college battle of brains where only the brightest stars compete for the ultimate galactic prize.",
-    icon: "🚀",
+    title: "Spot the Location Challenge",
+    desc: "Identify celestial wonders and iconic space missions through stunning visuals—test your observational skills in this exciting visual guessing round!",
+    icon: "🛰️",
   },
   {
-    title: "The Space Riddle",
-    desc: "Mind-bending quiz puzzles and lateral thinking questions inspired by celestial wonders and history.",
+    title: "Mystery Rounds",
+    desc: "The X/Y Challenge Rounds keep participants guessing through cryptic clues, lateral thinking, and interstellar logic puzzles designed to stretch imagination.",
     icon: "🪐",
+  },
+  {
+    title: "Observation Sessions",
+    desc: "Join our live stargazing and telescope observation events where we explore the night sky, study constellations, and learn together under the stars.",
+    icon: "🔭",
   },
 ];
 
-// --- Animation Variants ---
-const sectionTitleVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-};
 
-const memberCardVariants = {
-  hidden: { opacity: 0, scale: 0.8, rotateX: 15 },
-  visible: (i) => ({
+// --- Animations ---
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (delay = 0) => ({
     opacity: 1,
-    scale: 1,
-    rotateX: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.7,
-      ease: "easeOut",
-    },
+    y: 0,
+    transition: { duration: 0.8, delay, ease: "easeOut" },
   }),
 };
 
 // --- Component ---
-export default function KhagolQuizzingPage() {
-  const canvasRef = useRef(null);
-
-  // Starfield Effect - Improved with Ref and Resize Handling
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    let animationFrameId;
-    const starCount = window.innerWidth < 768 ? 100 : 250; // Fewer stars on mobile
-
-    const initializeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    initializeCanvas();
-
-    const stars = Array.from({ length: starCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      // 'z' creates the parallax effect, controlling speed and size
-      z: Math.random() * 0.9 + 0.1, 
-    }));
-
-    const animate = () => {
-      // Create a long tail effect by clearing only partially
-      ctx.fillStyle = "rgba(0, 0, 0, 0.2)"; 
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((s) => {
-        // Star movement from right to left, faster for stars with higher z (closer)
-        s.x -= 0.5 * s.z; 
-        if (s.x < 0) {
-          s.x = canvas.width;
-          s.y = Math.random() * canvas.height;
-        }
-        
-        const size = 1.5 * s.z;
-        ctx.fillStyle = `rgba(200, 255, 255, ${s.z})`;
-        ctx.beginPath();
-        // Draw the star with a subtle tail for speed effect
-        ctx.fillRect(s.x, s.y, size, size * 0.5); 
-        ctx.fill();
-      });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    // Handle resize
-    const handleResize = () => {
-      initializeCanvas();
-      // Re-initialize stars if necessary, but for simplicity, we just resize canvas
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+export default function KhagolPage() {
   return (
-    <div className="relative min-h-screen  text-white overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-black via-[#0b0f1a] to-[#04070f] text-white overflow-hidden">
       <Navbar />
 
-      {/* Animated Starfield */}
-      <canvas ref={canvasRef} id="starfield" className="fixed top-0 left-0 w-full h-full z-0"></canvas>
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center pt-36 pb-20 px-6">
+        <motion.h1
+          className="text-6xl md:text-8xl font-extrabold bg-gradient-to-r text-blue-300 drop-shadow-2xl"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+        >
+          Khagol
+        </motion.h1>
 
-      {/* Nebula Glow - Increased intensity and blur for a deeper space feel */}
-      <div className="fixed inset-0 bg-gradient-to-b from-cyan-900/50 via-black/80 to-black opacity-90 z-0 blur-3xl"></div>
-      <div className="relative z-10"> {/* Container for all content to sit above the starfield */}
+        {/* Updated, deeper hero copy */}
+        <motion.p
+          className="mt-8 max-w-4xl text-gray-300 text-lg md:text-xl leading-relaxed font-light tracking-wide"
+          custom={0.3}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+        >
+          Khagol is Antariksh’s curiosity engine — a hands-on community that turns wonder into action.
+          Every week we craft tight, high-energy quizzes and puzzle rounds (GK, historical deep-dives, rapid-fire lightning rounds)
+          alongside visual challenges like <span className="text-cyan-300 font-medium">“Spot the Location”</span> and the X/Y Mystery Rounds.
+          Beyond points and podiums, Khagol teaches people to observe carefully, think laterally, and communicate complex ideas simply —
+          through live observation nights, themed quiz series, and collaborative research projects that bring the night sky into the classroom.
+        </motion.p>
 
-        {/* Hero Section */}
-        <section className="flex flex-col items-center justify-center text-center pt-40 pb-24 px-6 min-h-[50vh]">
-          <motion.h1
-            className="text-6xl md:text-8xl font-black bg-gradient-to-r from-cyan-300 to-violet-400 text-transparent bg-clip-text drop-shadow-2xl"
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, type: "spring", stiffness: 50 }}
-          >
-            Khagol Quizzing <span className="block md:inline">Mission Control</span>
-          </motion.h1>
-          <motion.p
-            className="mt-6 max-w-3xl text-gray-300 text-xl md:text-2xl font-light tracking-wide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 1.5 }}
-          >
-            Where curiosity meets cosmos. We **decode the secrets of the universe** — challenging minds and igniting the spirit of exploration, one quiz at a time.
-          </motion.p>
-        </section>
+        {/* Concise "about" block to reinforce identity + impact */}
+        <motion.div
+          className="mt-6 max-w-3xl text-gray-400 text-base md:text-lg leading-relaxed"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={0.45}
+        >
+          <strong className="text-cyan-300">What we do:</strong> run weekly trivia drops, host inter-college contests (AstroLeague),
+          organize telescope observation sessions, and design curiosity-first events that sharpen research, visual literacy and quick reasoning.
+          Join Khagol if you want to learn how to read the sky, build memorable puzzles, and compete with a community that loves questions as much as answers.
+        </motion.div>
+      </section>
 
-        {/* Missions Section */}
-        <section className="px-6 md:px-16 py-20">
-          <motion.h2
-            className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-cyan-300 tracking-wider"
-            variants={sectionTitleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            Our Galactic Missions 🚀
-          </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {missions.map((m, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                whileHover={{ 
-                  scale: 1.07, 
-                  boxShadow: "0 0 40px rgba(52, 211, 235, 0.6)", // Cyan glow on hover
-                  transition: { duration: 0.3 } 
-                }}
-                className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-violet-500/10 border-t border-l border-cyan-400/30 backdrop-blur-md shadow-2xl transition-all duration-300 cursor-pointer"
-              >
-                <div className="text-6xl mb-4 text-center">{m.icon}</div>
-                <h3 className="text-3xl font-bold text-cyan-300 mb-3 text-center">{m.title}</h3>
-                <p className="text-gray-300 text-lg leading-relaxed text-center">{m.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+      {/* Missions Section */}
+      <section className="px-6 md:px-16 py-16">
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold text-center text-cyan-300 mb-16"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp}
+          viewport={{ once: true }}
+        >
+          Our Galactic Activities 🚀
+        </motion.h2>
 
-        {/* Team Section - Improved Animation */}
-        <section className="px-6 md:px-16 py-20">
-          <motion.h2
-            className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-violet-400 tracking-wider"
-            variants={sectionTitleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            Meet Our Stellar Crew 🌠
-          </motion.h2>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
-            {members.map((m, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                variants={memberCardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                whileHover={{ 
-                    scale: 1.1, 
-                    rotateY: 5, 
-                    rotateZ: i % 2 === 0 ? 2 : -2, // Subtle tilt for personality
-                    y: -10,
-                    transition: { duration: 0.3 } 
-                }}
-                className="bg-gradient-to-br from-black/40 to-cyan-500/10 border border-violet-400/30 rounded-3xl p-6 text-center backdrop-blur-md shadow-2xl transition-all duration-300 cursor-pointer w-full max-w-xs"
-              >
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-violet-400/50 shadow-lg hover:border-violet-300 transition-colors">
-                  <img
-                    src={m.img}
-                    alt={m.name}
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" // Added image effect
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-cyan-300">{m.name}</h3>
-                <p className="text-md text-gray-400 font-medium">{m.role}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-12">
+          {missions.map((m, i) => (
+            <motion.div
+              key={i}
+              className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-violet-500/10 border border-cyan-400/30 backdrop-blur-md shadow-lg hover:shadow-cyan-400/40 transition-all duration-300"
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp}
+              custom={i * 0.2}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 35px rgba(56, 189, 248, 0.6)",
+              }}
+            >
+              <div className="text-6xl mb-4 text-center">{m.icon}</div>
+              <h3 className="text-2xl font-bold text-cyan-300 mb-3 text-center">
+                {m.title}
+              </h3>
+              <p className="text-gray-300 text-lg leading-relaxed text-center">
+                {m.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Join Section */}
+      <section className="text-center py-24 px-6 bg-gradient-to-t from-cyan-900/40 to-transparent">
+        <motion.h3
+          className="text-4xl font-extrabold text-cyan-300 mb-4 drop-shadow-lg"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp}
+          viewport={{ once: true }}
+        >
+          Ready to Explore the Cosmos?
+        </motion.h3>
+        <motion.p
+          className="text-gray-400 mb-8 max-w-xl mx-auto text-lg"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp}
+          custom={0.2}
+          viewport={{ once: true }}
+        >
+          Join Khagol today and become part of Antariksh’s most curious, quiz-loving community — 
+          where every question brings you closer to the stars.
+        </motion.p>
+        <motion.a
+          href="/contact"
+          className="inline-block bg-white text-black font-extrabold px-10 py-4 rounded-full shadow-xl border-2 border-transparent hover:border-cyan-400 hover:shadow-cyan-400/50 transition-all duration-300 text-lg tracking-wide"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp}
+          custom={0.4}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          viewport={{ once: true }}
+        >
+          Join the Quest 🌌
+        </motion.a>
+      </section>
 
-        {/* Join Section - CTA as a "Warp Drive" Button */}
-        <section className="text-center py-24 px-6 bg-gradient-to-t from-cyan-900/40 to-transparent">
-          <motion.h3
-            className="text-4xl font-extrabold text-cyan-300 mb-4 drop-shadow-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            Initiate Warp Drive: Join Our Quest!
-          </motion.h3>
-          <motion.p
-            className="text-gray-400 mb-8 max-w-xl mx-auto text-lg"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Ready to challenge your cosmic IQ and navigate the deep space of knowledge? Your mission begins now.
-          </motion.p>
-          <motion.a
-            href="/contact"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            whileHover={{ 
-                scale: 1.15, // More aggressive hover scale
-                boxShadow: "0 0 25px rgba(255, 255, 255, 0.8)",
-                transition: { type: "spring", stiffness: 300 }
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-white text-black font-extrabold px-10 py-4 rounded-full shadow-2xl shadow-cyan-500/50 transition-all duration-300 text-lg tracking-wider border-2 border-transparent hover:border-cyan-400"
-          >
-            Launch Your Inquiry 🌌
-          </motion.a>
-        </section>
-
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

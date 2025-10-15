@@ -38,7 +38,7 @@ const DesignMediaPage = () => {
       </section>
 
       {/* What is Design & Media */}
-      <section className="py-16 px-6 md:px-16 flex flex-col md:flex-row items-center gap-10 bg-black/80 backdrop-blur-sm rounded-3xl mx-4 md:mx-16">
+      <section className="py-16 px-6 md:px-16 flex flex-col md:flex-row items-center gap-10  rounded-3xl mx-4 md:mx-16">
         <motion.div
           className="md:w-1/2"
           initial={{ opacity: 0, x: -50 }}
@@ -46,7 +46,7 @@ const DesignMediaPage = () => {
           transition={{ duration: 0.8 }}
         >
           <img
-            src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
+            src="https://res.cloudinary.com/doejabjai/image/upload/v1760546486/Gemini_Generated_Image_rxsyg4rxsyg4rxsy_eg7sss.png"
             alt="Design & Media"
             className="w-full max-w-md mx-auto rounded-2xl shadow-xl"
           />
@@ -107,40 +107,6 @@ const DesignMediaPage = () => {
     ))}
   </div>
 </section>
-
-
-      {/* Postholders */}
-      <section className="py-16 px-6 md:px-16">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Meet the Team
-        </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {designTeam.map((member, i) => (
-            <motion.div
-              key={i}
-              className="flex flex-col items-center text-white bg-black/60 backdrop-blur-lg rounded-2xl p-4 shadow-lg hover:shadow-blue-400/30 transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.2 }}
-            >
-              <div className="w-20 h-20 mb-2">
-                <img
-                  src={member.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                  alt={member.name}
-                  className="w-full h-full rounded-full object-cover border-2 border-blue-400"
-                />
-              </div>
-              <h4 className="font-semibold text-lg">{member.name}</h4>
-              <p className="text-blue-300 text-sm">{member.role}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       {/* Instagram / Info CTA */}
       <section className="py-16 px-6 md:px-16 flex flex-col items-center text-center">
