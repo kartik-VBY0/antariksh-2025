@@ -6,7 +6,7 @@ import Robot from '../3d/Robot';
 import Spaceship from '../3d/Spaceship'; // new spaceship component
 import Telescope from '../3d/Telescope';
 import Robot2 from '../3d/Robot2';
-
+import Meteor from '../3d/Meteor';
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -81,6 +81,16 @@ const HeroSection = () => {
         className="w-full mt-10"
       >
         <BlackHole />
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1.5, duration: 1 }}
+  className="absolute inset-0 pointer-events-none z-10"
+>
+  <Meteor />
+</motion.div>
+
+
       </motion.div>
       {/* Robot 2 (below Black Hole, right side) */}
 <motion.div
