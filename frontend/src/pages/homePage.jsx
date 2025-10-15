@@ -120,7 +120,7 @@ const Home1 = ({
         />
       </div>
           <HeroSection />
-      <HomeSections />
+      
       <FloatingButtons />
       <Footer />
 
