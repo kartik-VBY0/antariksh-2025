@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, animate } from "framer-motion";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
@@ -8,15 +8,15 @@ const LaunchPadPage = () => {
   const [launches, setLaunches] = useState([]);
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
-  const [scrollDistance, setScrollDistance] = useState(300); // in vh
-  const [motionRange, setMotionRange] = useState({ end: 0.7, offset: 20 }); // responsive motion config
+  const [scrollDistance, setScrollDistance] = useState(300);
+  const [motionRange, setMotionRange] = useState({ end: 0.7, offset: 20 });
+  const [scrollDir, setScrollDir] = useState("down");
 
+  // Fetch data
   useEffect(() => {
     const fetchLaunches = async () => {
       try {
-        const res = await fetch(
-          "https://ll.thespacedevs.com/2.0.0/launch/upcoming/?limit=6"
-        );
+        const res = await fetch("https://ll.thespacedevs.com/2.0.0/launch/upcoming/?limit=6");
         const data = await res.json();
         setLaunches(data.results || []);
       } catch (err) {
@@ -28,71 +28,73 @@ const LaunchPadPage = () => {
     fetchLaunches();
   }, []);
 
-  // ✅ Responsive rocket movement based on container height
+  // Scroll distance based on container
   useEffect(() => {
     const updateScrollDistance = () => {
       const vh = window.innerHeight;
       const totalHeight = containerRef.current?.scrollHeight || 0;
-
-      // Convert pixel scrollable distance to vh (approx)
-      const vhDistance = (totalHeight / vh) * 100;
-
-      // Slightly less than full to keep rocket visible at the end
-      setScrollDistance(vhDistance * 0.9);
+      setScrollDistance(((totalHeight / vh) * 100) * 0.9);
     };
-
     updateScrollDistance();
     window.addEventListener("resize", updateScrollDistance);
     return () => window.removeEventListener("resize", updateScrollDistance);
   }, []);
 
-  // ✅ Adjust motion speed and offset by screen size
+  // Responsive motion config
   useEffect(() => {
     const updateMotionRange = () => {
       const width = window.innerWidth;
-
-      if (width < 640) {
-        // 📱 Mobile
-        setMotionRange({ end: 0.6, offset: 16 }); // moves faster
-      } else if (width < 1024) {
-        // 💻 Tablet
-        setMotionRange({ end: 0.7, offset: 15 });
-      } else {
-        // 🖥️ Desktop
-        setMotionRange({ end: 0.7, offset: 25 }); // slower, smoother
-      }
+      if (width < 640) setMotionRange({ end: 0.6, offset: 16 });
+      else if (width < 1024) setMotionRange({ end: 0.7, offset: 15 });
+      else setMotionRange({ end: 0.7, offset: 25 });
     };
-
     updateMotionRange();
     window.addEventListener("resize", updateMotionRange);
     return () => window.removeEventListener("resize", updateMotionRange);
   }, []);
 
+  // Detect scroll direction
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrollDir(currentY > lastY ? "down" : "up");
+      lastY = currentY;
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const { scrollYProgress } = useScroll();
+  const width = typeof window !== "undefined" ? window.innerWidth : 1200;
+  let distanceMultiplier = 1;
+  if (width < 640) distanceMultiplier = 1.2;
+  else if (width < 1024) distanceMultiplier = 1;
 
- const width = typeof window !== "undefined" ? window.innerWidth : 1200;
+  // Vertical rocket movement
+  const rocketY = useTransform(
+    scrollYProgress,
+    [0, motionRange.end],
+    ["0vh", `${scrollDistance * distanceMultiplier + motionRange.offset}vh`]
+  );
 
-// Adjust multiplier per screen
-let distanceMultiplier = 1; // default (desktop)
-if (width < 640) {
-  distanceMultiplier = 1.2; // 📱 mobile → faster
-} else if (width < 1024) {
-  distanceMultiplier = 1; // 💻 tablet → medium
-}
-
-// Then use it in your transform:
-const rocketY = useTransform(
-  scrollYProgress,
-  [0, motionRange.end],
-  ["0vh", `${scrollDistance * distanceMultiplier + motionRange.offset}vh`]
-);
-
-
+  // Progress line
   const lineHeight = useTransform(
     scrollYProgress,
     [0, motionRange.end],
     ["0%", `${100 * distanceMultiplier}%`]
   );
+
+  // ✅ Dynamic rotation using useMotionValue + animate()
+  const rocketRotation = useMotionValue(135); // default: facing down
+  useEffect(() => {
+    const targetRotation = scrollDir === "down" ? 135 : -45; // rotate up when scrolling up
+    const controls = animate(rocketRotation, targetRotation, {
+      duration: 0.4,
+      ease: "easeOut",
+    });
+    return () => controls.stop();
+  }, [scrollDir]);
 
   return (
     <>
@@ -119,22 +121,25 @@ const rocketY = useTransform(
         ref={containerRef}
         className="relative min-h-[300vh] px-4 md:px-16 bg-[#02021a] overflow-hidden"
       >
-        {/* Central glowing timeline */}
+        {/* Glowing timeline */}
         <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[3px] h-full bg-gradient-to-b from-blue-500 via-cyan-400 to-purple-600 opacity-40"></div>
 
-        {/* Dynamic glowing progress line */}
+        {/* Dynamic progress line */}
         <motion.div
           style={{ height: lineHeight }}
           className="absolute left-1/2 top-0 -translate-x-1/2 w-[4px] bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-600 shadow-[0_0_25px_rgba(59,130,246,0.8)] rounded-full origin-top"
         ></motion.div>
 
-        {/* 🚀 Rocket (moves smoothly with line, mobile friendly) */}
+        {/* 🚀 Rocket */}
         <motion.div
-  style={{ y: rocketY }}
-  className="absolute left-[48%] -translate-x-[70%] w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex justify-center items-center shadow-[0_0_25px_rgba(59,130,246,0.9)]"
->
-  <RocketLaunchIcon className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)] rotate-[135deg]" />
-</motion.div>
+          style={{
+            y: rocketY,
+            rotate: rocketRotation,
+          }}
+          className="absolute z-10 left-[48%] -translate-x-[70%] w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex justify-center items-center shadow-[0_0_25px_rgba(59,130,246,0.9)]"
+        >
+          <RocketLaunchIcon className="w-10 h-10 text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
+        </motion.div>
 
         {/* Launch cards */}
         <div className="relative max-w-6xl mx-auto mt-40 space-y-40">
@@ -146,9 +151,7 @@ const rocketY = useTransform(
             launches.map((launch, i) => (
               <motion.div
                 key={launch.id}
-                className={`relative md:w-1/2 ${
-                  i % 2 === 0 ? "ml-auto" : "mr-auto"
-                }`}
+                className={`relative md:w-1/2 ${i % 2 === 0 ? "ml-auto" : "mr-auto"}`}
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
