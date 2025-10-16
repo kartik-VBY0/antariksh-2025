@@ -28,7 +28,7 @@ const navItems = [
   { name: "Events", path: "/events" },
   { name: "Teams", path: "/teams", dropdown: teamsDropdown },
   { name: "Blog", path: "/blog", dropdown: blogDropdown },
-  { name: "Contact", path: "/contact" },
+  { name: "Gallery", path: "/gallery" },
   { name: "About Us", path: "/about" },
 
 ];
