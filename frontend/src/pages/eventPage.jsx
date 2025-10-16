@@ -49,14 +49,7 @@
       image: "https://res.cloudinary.com/dkk4f02zv/image/upload/v1760292304/Gemini_Generated_Image_8e65i98e65i98e65_ci6wcs.png",
       details: "Cinema is a part of everybody's life, and the same goes for Antariksh. Here at Antariksh, we use it as a tool to dive into the mysteries of the cosmos and to explore the imagination of the human mind through science fiction and science shows. Throughout the year, Antariksh organizes screenings of various science shows and movies for the sci-fi fans of NIT Kurukshetra. Last year, we screened some episodes of one of the best science shows of all time, 'Cosmos: A Spacetime Odyssey.' The show took the audience on a cosmic journey, delving into the dimensions of fascinating scientific exploration and the mysteries of limitless space. Antariksh will always extend invitations to cosmic adventurers by organizing events such as 'The Stellar Screens' to explore the boundless dimensions of possibilities.",
     },
-    {
-      id:6,
-      title: "Star Gazing",
-      date: "",
-      description: "Experience the wonders of the night sky with guided stargazing sessions using telescopes.",
-      image: "https://res.cloudinary.com/dkk4f02zv/image/upload/v1760292117/Gemini_Generated_Image_r5ajc5r5ajc5r5aj_f2cu6f.png",
-      details: "In the depth of the cosmos and vastness of space, lie numerous planets and stars which have intrigued the minds of humans since the beginning of their time. These celestial bodies make the universe as it is, and we, humans have always been curious to know them. The darkness of space is lightened by those stars that seem tiny but are gigantic. There are planets beyond Earth, that are the beauty of the cosmos’s creation. With various stargazing sessions of Antariksh, explore the realities of the cosmos, and know what lies beyond our planet. Learn to use telescopes, know to spot these heavenly objects, and become one of our stargazers.",
-    },
+    
   ];
 
   // --- Rotating Earth Component ---
@@ -137,14 +130,14 @@
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 10 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="absolute bg-gray-800/90 text-white text-center p-3 rounded-xl border border-blue-400 shadow-md w-48 cursor-pointer select-none backdrop-blur-sm"
+        className="absolute bg-gray-800/90 text-white text-center p-5 rounded-2xl border border-blue-400 shadow-lg w-64 cursor-pointer select-none backdrop-blur-md"
         style={{ transform: "translate(-50%, -50%)", pointerEvents: "auto", zIndex: 20 }}
       >
         {event.image && (
           <motion.img
             src={event.image}
             alt={event.title}
-            className="w-full h-24 object-cover rounded-lg mb-2 border border-blue-500/30"
+            className="w-full h-36 object-cover rounded-lg mb-3 border border-blue-500/30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -211,7 +204,7 @@
       [5, 3, 5],
       [-5, 2, -5],
       [0, 3, 6],
-      [0, -1, -7],
+      
     ];
 
     return (
@@ -252,33 +245,54 @@
           </section>
         )}
 
-        {/* --- Mobile Layout (Stacked Cards) --- */}
-        {isMobile && (
-          <section className="flex flex-col items-center w-full min-h-screen px-4 py-6 space-y-6 bg-black/80 backdrop-blur-sm">
-            {events.map((event) => (
-              <motion.div
-                key={event.id}
-                onClick={() => setSelectedEvent(event)}
-                className="bg-gray-800/90 text-white text-center p-4 rounded-2xl border border-blue-400 shadow-lg w-full max-w-sm cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-32 object-cover rounded-lg mb-3 border border-blue-500/30"
-                />
-                <h3 className="text-lg font-bold text-blue-300">{event.title}</h3>
-                <p className="text-xs text-gray-300">{event.date}</p>
-                <p className="text-sm text-gray-400 mt-1">{event.description}</p>
-                <button className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white text-sm">
-                  Know More
-                </button>
-              </motion.div>
-            ))}
-          </section>
-        )}
+        {/* --- Mobile Layout (Stacked Cards with 3D background) --- */}
+{isMobile && (
+  <section className="relative flex flex-col items-center w-full min-h-screen px-4 py-6 space-y-6 bg-black overflow-hidden">
+    {/* Starry 3D Background */}
+    <div className="absolute inset-0 -z-10">
+      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+        <ambientLight intensity={2.5} />
+        <pointLight position={[10, 10, 10]} intensity={1.5} />
+        <Stars
+          radius={80}
+          depth={60}
+          count={4000}
+          factor={3}
+          saturation={0}
+          fade
+          speed={0.5}
+        />
+        <Earth />
+        <OrbitControls enableZoom={false} enableRotate={false} />
+      </Canvas>
+    </div>
+
+    {/* Stacked Event Cards */}
+    {events.map((event) => (
+      <motion.div
+        key={event.id}
+        onClick={() => setSelectedEvent(event)}
+        className="bg-gray-800/90 text-white text-center p-4 rounded-2xl border border-blue-400 shadow-lg w-full max-w-sm cursor-pointer backdrop-blur-sm"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-32 object-cover rounded-lg mb-3 border border-blue-500/30"
+        />
+        <h3 className="text-lg font-bold text-blue-300">{event.title}</h3>
+        <p className="text-xs text-gray-300">{event.date}</p>
+        <p className="text-sm text-gray-400 mt-1">{event.description}</p>
+        <button className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white text-sm">
+          Know More
+        </button>
+      </motion.div>
+    ))}
+  </section>
+)}
+
 
         <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
         <Footer />
