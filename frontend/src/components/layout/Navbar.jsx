@@ -6,14 +6,14 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 const NAV_HEIGHT = 96;
 
 const teamsDropdown = [
-  { name: "Core Management", path: "/teams/core-management" },
-  { name: "Design & Media", path: "/teams/design-media" },
-  { name: "Web & Tech", path: "/teams/web-tech" },
-  { name: "Discussion", path: "/teams/discussion" },
-  { name: "Kalpa", path: "/teams/kalpa" },
-  { name: "Observatory", path: "/teams/observatory" },
-  { name: "Newsletter", path: "/teams/newsletter" },
-  { name: "Khagol Quizzing", path: "/teams/khagol" },
+    { name: "Observatory", path: "/teams/observatory" },
+    { name: "Newsletter", path: "/teams/newsletter" },
+    { name: "Web & Tech", path: "/teams/web-tech" },
+    { name: "Design & Media", path: "/teams/design-media" },
+    { name: "Kalpa", path: "/teams/kalpa" },
+    { name: "Khagol Quizzing", path: "/teams/khagol" },
+    { name: "Discussion", path: "/teams/discussion" },
+    { name: "Core Management", path: "/teams/core-management" },
 ];
 
 const blogDropdown = [
