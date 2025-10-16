@@ -1,46 +1,16 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 import Button from "../../components/ui/Button";
-import { FileDown, Eye, Zap } from "lucide-react"; // Added Zap icon
+import { FileDown, Eye } from "lucide-react"; // Added Zap icon
 
-const newsletterTeam = [
-  { name: "Diksha Dutta", role: "Newsletter Head", image: "" },
-  { name: "Raghvi Gupta", role: "Editor", image: "" },
-  { name: "Archit Chhajed", role: "Content Lead", image: "" },
-  { name: "Bhavya Arya", role: "Creative Designer", image: "" },
-];
 
 // List of PDFs in public folder
 const pdfs = [
   { title: "Newsletter Oct 2024", url: "/EDITION 02 THE COSMIC EXPRESS.pdf" },
   { title: "Newsletter Aug 2023", url: "/Edition 01 The Cosmic Express_compressed.pdf" },
 ];
-
-// Example data for the new "Best of the Best" section
-const cosmicHighlight = {
-  title: "The Stellar Nursery: Best Feature Article",
-  excerpt: "A deep dive into the Orion Nebula, where stars are born and cosmic dust clouds swirl in breathtaking complexity. Read the feature that captivated our readers!",
-  issue: "August 2023 Edition",
-  link: "/Edition 01 The Cosmic Express_compressed.pdf", // Link to the specific issue
-};
-
-// Animation variants for the highlight card
-const cardVariants = {
-  initial: { opacity: 0, scale: 0.8, rotateX: 90 },
-  animate: { 
-    opacity: 1, 
-    scale: 1, 
-    rotateX: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-      delay: 0.2
-    }
-  },
-};
 
 const NewsletterPage = () => {
   return (

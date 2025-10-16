@@ -5,12 +5,6 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 import Button from "../../components/ui/Button";
 
-const techTeam = [
-  { name: "Aditya Singh", role: "Tech Head", image: "" },
-  { name: "Nisha Verma", role: "Frontend Lead", image: "" },
-  { name: "Rohit Kumar", role: "Backend Lead", image: "" },
-  { name: "Simran Kaur", role: "DevOps & Automation", image: "" },
-];
 
 const WebTechPage = () => {
   const navigate = useNavigate();

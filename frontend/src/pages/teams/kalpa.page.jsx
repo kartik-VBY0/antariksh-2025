@@ -1,15 +1,8 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
-import Button from "../../components/ui/Button";
 
-const kalpaTeam = [
-  { name: "Raghvi Gupta", role: "Kalpa Head", image: "" },
-  { name: "Bhavya Arya", role: "Co-Head", image: "" },
-  { name: "Archit Chhajed", role: "Editor", image: "" },
-  { name: "Kartik Saraswat", role: "Content Lead", image: "" },
-];
 
 const KalpaPage = () => {
   return (

@@ -4,12 +4,6 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 import Button from "../../components/ui/Button";
 
-const observatoryTeam = [
-  { name: "Garvit Gupta", role: "Observatory Head", image: "" },
-  { name: "Diksha Dutta", role: "Co-Head", image: "" },
-  { name: "Raghav Sharma", role: "Astro Research Lead", image: "" },
-  { name: "Sneha Verma", role: "Event Coordinator", image: "" },
-];
 
 const ObservatoryPage = () => {
   const [location, setLocation] = useState({
