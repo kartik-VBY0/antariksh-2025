@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
@@ -101,35 +101,40 @@ const AstroFactsPage = () => {
       </section>
 
       {/* Fun CTA */}
-      <section className="py-16 px-6 md:px-20 text-center justify-center items-center">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-white mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Stay Curious!
-        </motion.h2>
-        <motion.p
-          className="text-white/70 max-w-2xl mx-auto mb-6"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Space is vast and full of mysteries. Keep exploring, and let the universe inspire you.
-        </motion.p>
-        <Button 
-          href="https://solarsystem.nasa.gov/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 py-3 rounded-full  transition-transform hover:scale-105"
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-        >
-          Explore NASA →
-        </Button>
-      </section>
+<section className="py-16 px-6 md:px-20 text-center">
+  <motion.h2
+    className="text-3xl md:text-4xl font-bold text-white mb-6"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    Stay Curious!
+  </motion.h2>
+
+  <motion.p
+    className="text-white/70 max-w-2xl mx-auto mb-6"
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.2 }}
+  >
+    Space is vast and full of mysteries. Keep exploring, and let the universe inspire you.
+  </motion.p>
+
+  <div className="flex justify-center">
+    <motion.a
+      href="https://solarsystem.nasa.gov/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-6 py-3 rounded-full bg-blue-500 text-white transition-transform hover:scale-105"
+      initial={{ scale: 0.8 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+    >
+      Explore NASA →
+    </motion.a>
+  </div>
+</section>
+
 
       <Footer />
     </>

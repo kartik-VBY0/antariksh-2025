@@ -32,46 +32,6 @@ const HeroSection = () => {
   />
 </div>
 
-
-      {/* Floating Astronaut */}
-{/* Astronaut floating around */}
-{/* <motion.img
-  src="/aaastronaut.png"
-  alt="Astronaut"
-  className="hidden xl:block absolute top-10 md:top-20 left-1/2 transform -translate-x-1/2 w-80 md:w-[28rem] lg:w-[32rem] drop-shadow-3xl"
-  animate={{
-    x: [0, 200, -150, 100, 0], // horizontal floating
-    y: [0, -100, 50, -80, 0],  // vertical floating
-    rotate: [-5, 10, -10, 5, -5],
-  }}
-  transition={{
-    repeat: Infinity,
-    duration: 50, // slower full-space motion
-    ease: "easeInOut",
-  }}
-/> */}
-
-{/* ISS floating around */}
-{/* <motion.img
-  src="/iss.png"
-  alt="ISS"
-  className="hidden xl:block absolute top-20 left-[10%] w-60 md:w-[22rem] lg:w-[26rem] drop-shadow-3xl"
-  animate={{
-    x: [0, -150, 100, -200, 0],
-    y: [0, 120, -100, 80, 0],
-    rotate: [-3, 8, -8, 3, -3],
-  }}
-  transition={{
-    repeat: Infinity,
-    duration: 50,
-    ease: "easeInOut",
-  }}
-/> */}
-
-
-
-
-
       {/* Main Title */}
       <motion.h1
         initial={{ opacity: 0, y: 50 }}
