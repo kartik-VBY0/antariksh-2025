@@ -7,7 +7,7 @@ import Button from "../../components/ui/Button";
 
 const LaunchPadPage = () => {
   const [launches, setLaunches] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [visibleCount, setVisibleCount] = useState(5);
   const [selectedLaunch, setSelectedLaunch] = useState(null);
   const [loading, setLoading] = useState(true);
 

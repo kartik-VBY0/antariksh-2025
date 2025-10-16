@@ -1,99 +1,98 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import Button from '../ui/Button';
-import Robot3 from '../3d/Robot3';
-import Planet from '../3d/Planet';
+// import Button from '../ui/Button';
+// import Robot3 from '../3d/Robot3';
+// import Planet from '../3d/Planet';
 
-const homepageEvents = [
-  {
-    title: "Astrohunt",
-    description: "Team-based treasure hunt where teams solve astronomy-related clues to reach the final destination.",
-    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938895/ChatGPT_Image_Oct_8_2025_09_24_20_PM_pkmux6.png",
-    details: "Team-based event (2-3 members). In this event there will be a prelims for treasure hunt, where teams have to solve clues related to astronomy to find the next location and finally reach the final location as fast as they can. After clearing the prelims, they will enter the final round which will be a webhunt, where the team has to solve clues on their computer through the internet, enter their answers, and solve all the questions as fast as they can.",
-  },
-  {
-    title: "Astroarena",
-    description: "A Squid Game-inspired team event with space-themed elimination challenges.",
-    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938217/ChatGPT_Image_Oct_8_2025_08_34_09_PM_uzbdsw.png",
-    details: "Team-based event (2-3 members) inspired by Squid Games, where each round will be an elimination round. After passing through multiple rounds, one team finally wins the game. Each round is designed with a fun astro twist, making the competition engaging and challenging.",
-  },
-  {
-    title: "Prakshepan",
-    description: "Design and launch your own water bottle rocket with creativity and precision.",
-    image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938564/ChatGPT_Image_Oct_8_2025_09_18_54_PM_m8fkfa.png",
-    details: "Team-based Water Bottle Rocket event (2-3 members). In the prelims, teams have to bring their designs and materials for their rockets and present their ideas. The best concepts will advance to the final round, where teams will actually build and launch their rockets. They will be judged on flight time, distance covered, and their ability to keep a payload (an egg) safe.",
-  },
-];
+// const homepageEvents = [
+//   {
+//     title: "Astrohunt",
+//     description: "Team-based treasure hunt where teams solve astronomy-related clues to reach the final destination.",
+//     image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938895/ChatGPT_Image_Oct_8_2025_09_24_20_PM_pkmux6.png",
+//     details: "Team-based event (2-3 members). In this event there will be a prelims for treasure hunt, where teams have to solve clues related to astronomy to find the next location and finally reach the final location as fast as they can. After clearing the prelims, they will enter the final round which will be a webhunt, where the team has to solve clues on their computer through the internet, enter their answers, and solve all the questions as fast as they can.",
+//   },
+//   {
+//     title: "Astroarena",
+//     description: "A Squid Game-inspired team event with space-themed elimination challenges.",
+//     image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938217/ChatGPT_Image_Oct_8_2025_08_34_09_PM_uzbdsw.png",
+//     details: "Team-based event (2-3 members) inspired by Squid Games, where each round will be an elimination round. After passing through multiple rounds, one team finally wins the game. Each round is designed with a fun astro twist, making the competition engaging and challenging.",
+//   },
+//   {
+//     title: "Prakshepan",
+//     description: "Design and launch your own water bottle rocket with creativity and precision.",
+//     image: "https://res.cloudinary.com/doejabjai/image/upload/v1759938564/ChatGPT_Image_Oct_8_2025_09_18_54_PM_m8fkfa.png",
+//     details: "Team-based Water Bottle Rocket event (2-3 members). In the prelims, teams have to bring their designs and materials for their rockets and present their ideas. The best concepts will advance to the final round, where teams will actually build and launch their rockets. They will be judged on flight time, distance covered, and their ability to keep a payload (an egg) safe.",
+//   },
+// ];
 
-const galleryImages = [
-  "https://res.cloudinary.com/doejabjai/image/upload/v1759935972/WhatsApp_Image_2025-10-08_at_8.33.05_PM_ndfoov.jpg",
-  "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
-  "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
-  "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/WhatsApp_Image_2025-10-08_at_8.33.07_PM_mzzarb.jpg",
+// const galleryImages = [
+//   "https://res.cloudinary.com/doejabjai/image/upload/v1759935972/WhatsApp_Image_2025-10-08_at_8.33.05_PM_ndfoov.jpg",
+//   "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
+//   "https://res.cloudinary.com/doejabjai/image/upload/v1759583989/WhatsApp_Image_2025-09-21_at_3.44.01_PM_rpprlw.jpg",
+//   "https://res.cloudinary.com/doejabjai/image/upload/v1759938219/WhatsApp_Image_2025-10-08_at_8.33.07_PM_mzzarb.jpg",
 
-];
+// ];
 
-const Teams = [
-  {
-    name: "Kalpaa - Facts & Research",
-    description:
-      "The knowledge hub of Antariksh — curating cosmic facts, astrophysics insights, and deep-space research pieces.",
-    image:
-      "https://res.cloudinary.com/doejabjai/image/upload/v1760206069/Gemini_Generated_Image_cf8c0kcf8c0kcf8c_mvbs3z.png",
-    link: "/teams/kalpa",
-  },
-  {
-    name: "Observatory - Stargazing & Exploration",
-    description:
-      "From telescopes to night sky sessions — the team that connects Antariksh members directly with the universe.",
-    image:
-      "https://res.cloudinary.com/doejabjai/image/upload/v1760206305/Gemini_Generated_Image_qrklj6qrklj6qrkl_ikqoi0.png",
-    link: "/teams/observatory",
-  },
-  {
-    name: "Newsletter - Cosmic Digest",
-    description:
-      "The storytellers of Antariksh — bringing monthly updates, cosmic news, and exclusive club features.",
-    image:
-      "https://res.cloudinary.com/doejabjai/image/upload/v1760206448/Gemini_Generated_Image_v9hfksv9hfksv9hf_zo95nr.png",
-    link: "/teams/newsletter",
-  },
-  {
-    name: "Web & Tech - Digital Frontier",
-    description:
-      "Developers and tech wizards behind Antariksh’s digital presence — from websites to automation and AI.",
-    image:
-      "https://res.cloudinary.com/doejabjai/image/upload/v1760206070/Gemini_Generated_Image_rfm126rfm126rfm1_1_hujpy3.png",
-    link: "/teams/web",
-  },
-  {
-    name: "Design & Media - Visual Universe",
-    description:
-      "The creative artists and designers crafting Antariksh’s visual identity, posters, and event media.",
-    image:
-      "https://res.cloudinary.com/doejabjai/image/upload/v1760206072/Gemini_Generated_Image_clkgoclkgoclkgoc_plusik.png",
-    link: "/teams/design",
-  },
-  {
-    name: "Khagol - Quiz & Engagement",
-    description:
-      "The mind challengers — organizing quizzes, games, and interactive events to keep curiosity alive.",
-    image:
-      "https://res.cloudinary.com/doejabjai/image/upload/v1760206069/Gemini_Generated_Image_jfamkajfamkajfam_ymoxoo.png",
-    link: "/teams/khagol",
-  },
-];
+// const Teams = [
+//   {
+//     name: "Kalpaa - Facts & Research",
+//     description:
+//       "The knowledge hub of Antariksh — curating cosmic facts, astrophysics insights, and deep-space research pieces.",
+//     image:
+//       "https://res.cloudinary.com/doejabjai/image/upload/v1760206069/Gemini_Generated_Image_cf8c0kcf8c0kcf8c_mvbs3z.png",
+//     link: "/teams/kalpa",
+//   },
+//   {
+//     name: "Observatory - Stargazing & Exploration",
+//     description:
+//       "From telescopes to night sky sessions — the team that connects Antariksh members directly with the universe.",
+//     image:
+//       "https://res.cloudinary.com/doejabjai/image/upload/v1760206305/Gemini_Generated_Image_qrklj6qrklj6qrkl_ikqoi0.png",
+//     link: "/teams/observatory",
+//   },
+//   {
+//     name: "Newsletter - Cosmic Digest",
+//     description:
+//       "The storytellers of Antariksh — bringing monthly updates, cosmic news, and exclusive club features.",
+//     image:
+//       "https://res.cloudinary.com/doejabjai/image/upload/v1760206448/Gemini_Generated_Image_v9hfksv9hfksv9hf_zo95nr.png",
+//     link: "/teams/newsletter",
+//   },
+//   {
+//     name: "Web & Tech - Digital Frontier",
+//     description:
+//       "Developers and tech wizards behind Antariksh’s digital presence — from websites to automation and AI.",
+//     image:
+//       "https://res.cloudinary.com/doejabjai/image/upload/v1760206070/Gemini_Generated_Image_rfm126rfm126rfm1_1_hujpy3.png",
+//     link: "/teams/web",
+//   },
+//   {
+//     name: "Design & Media - Visual Universe",
+//     description:
+//       "The creative artists and designers crafting Antariksh’s visual identity, posters, and event media.",
+//     image:
+//       "https://res.cloudinary.com/doejabjai/image/upload/v1760206072/Gemini_Generated_Image_clkgoclkgoclkgoc_plusik.png",
+//     link: "/teams/design",
+//   },
+//   {
+//     name: "Khagol - Quiz & Engagement",
+//     description:
+//       "The mind challengers — organizing quizzes, games, and interactive events to keep curiosity alive.",
+//     image:
+//       "https://res.cloudinary.com/doejabjai/image/upload/v1760206069/Gemini_Generated_Image_jfamkajfamkajfam_ymoxoo.png",
+//     link: "/teams/khagol",
+//   },
+// ];
 
 
 
 const HomeSections = () => {
-  const navigate = useNavigate();
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  // const navigate = useNavigate();
+  // const [selectedEvent, setSelectedEvent] = useState(null);
 
   return (
     <div className="relative w-full overflow-hidden">
-
 
       {/* --- Society and   Culture Section --- */}
       <section className="relative py-20 md:py-40 px-6 md:px-20 flex flex-col items-center text-center overflow-hidden ">
@@ -149,50 +148,14 @@ const HomeSections = () => {
           innovation clubs to space societies, every student fuels the spirit of <em>Antariksh</em> through
           creativity, collaboration, and cosmic curiosity.
         </motion.p>
-{/* --- Left floating Robot3 --- */}
-<motion.div
-  className="absolute left-0 top-1/4 -translate-y-[10%] w-64 md:w-96 pointer-events-none z-10"
-  initial={{ opacity: 0, x: -100 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1, delay: 0.2 }}
->
-  <Robot3 />
-</motion.div>
-
-{/* --- Right floating Planet --- */}
-<motion.div
-  className="absolute right-0 top-1/4 -translate-y-[10%] w-64 md:w-96 pointer-events-none z-10"
-  initial={{ opacity: 0, x: 100 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1, delay: 0.2 }}
->
-  <Planet />
-</motion.div>
-
-
-        <motion.div
-          className="mt-12 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        />
-        <motion.div
-          className="absolute bottom-10 left-1/2 w-3 h-3 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-          animate={{ y: [0, -20, 0], x: [0, 5, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-10 right-1/2 w-2 h-2 bg-blue-300 rounded-full shadow-[0_0_6px_rgba(147,197,253,0.6)]"
-          animate={{ y: [0, -15, 0], x: [0, -5, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
       </section>
 
       
 
 
+
 {/* --- About Section --- */}
-<motion.section
+{/* <motion.section
   className="relative py-12 md:py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
   initial={{ opacity: 0, y: 80 }}
   whileInView={{ opacity: 1, y: 0 }}
@@ -229,10 +192,10 @@ const HomeSections = () => {
       Know More
     </Button>
   </motion.div>
-</motion.section>
+</motion.section> */}
 
 
-      {/* --- Events Section-- don't change you can make changes in resources --- */}
+      {/* --- Events Section-- don't change you can make changes in resources ---
       <motion.section
         className="px-6 md:px-5 bg-black/40 backdrop-blur-sm py-5"
         initial={{ opacity: 0 }}
@@ -281,7 +244,7 @@ const HomeSections = () => {
       </motion.section>
 
       {/* --- Gallery Section -don't change you can make changes in resources --- */}
-<motion.section
+{/* <motion.section
 className="py-5 my-5 md:py-20 px-6 md:px-20 relative"
 initial={{ opacity: 0, y: 80 }}
 whileInView={{ opacity: 1, y: 0 }}
@@ -313,11 +276,11 @@ viewport={{ once: true }}
     View More
   </Button>
 </div>
-</motion.section>
+</motion.section> */}
 
 
       {/* --- Event Modal---- add the element above --- */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {selectedEvent && (
           <motion.div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-center items-center px-4"
@@ -342,12 +305,12 @@ viewport={{ once: true }}
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
 
 
       {/* --- Teams Section --- */}
-<motion.section
+{/* <motion.section
   className="relative  pb-40 px-6 md:px-20 overflow-hidden pt-10"
   initial={{ opacity: 0, y: 60 }}
   whileInView={{ opacity: 1, y: 0 }}
@@ -355,7 +318,7 @@ viewport={{ once: true }}
   viewport={{ once: true }}
 >
   {/* Animated cosmic gradient background */}
-  <motion.div
+  {/* <motion.div
     className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-black/90 rounded-3xl"
     animate={{ opacity: [0.8, 1, 0.8] }}
     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -411,8 +374,8 @@ viewport={{ once: true }}
     className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/20 blur-[180px] rounded-full"
     animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
     transition={{ duration: 8, repeat: Infinity }}
-  />
-</motion.section>
+  /> */}
+{/* </motion.section> */}
 
 
     </div>
