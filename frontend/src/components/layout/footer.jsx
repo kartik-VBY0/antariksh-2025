@@ -15,7 +15,7 @@ const footerSections = {
     { name: "Events", path: "/events" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/contact" },
-    { name: "Launchpad", path: "/launchpad" },
+    { name: "Upcoming Launches", path: "/launchpad" },
   ],
   Teams: [
     { name: "Core Management", path: "/teams/core-management" },

@@ -220,33 +220,8 @@ const ObservatoryPage = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 px-6 md:px-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-          Meet the Postholders
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {observatoryTeam.map((member, i) => (
-            <motion.div
-              key={i}
-              className="flex flex-col items-center text-white bg-black/60 p-4 rounded-2xl hover:shadow-blue-400/30 transition"
-            >
-              <img
-                src={
-                  member.image ||
-                  "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                }
-                alt={member.name}
-                className="w-20 h-20 rounded-full border-2 border-blue-400 mb-2"
-              />
-              <h4 className="font-semibold text-lg">{member.name}</h4>
-              <p className="text-blue-300 text-sm">{member.role}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
-<section className="relative py-20 px-6 md:px-16 text-center bg-gradient-to-b from-[#01010f] via-[#02021a] to-[#01010f] overflow-hidden">
+<section className="relative py-20 px-6 md:px-16 text-center bg-black">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.2),transparent_70%)] blur-2xl -z-10"></div>
 
   <motion.div

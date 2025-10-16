@@ -32,7 +32,7 @@ import SpaceExplorationsPage from './pages/Blog/SpaceExplorationsPage';
 //contact
 import ContactPage from './pages/api/contact'
 import BuiltByPage from './pages/extraPages/builtBy';
-
+import TechspardhaPopup from './components/popUP/techspardha.pupup';
 
 //Launchpad
 import LaunchpadPage from '../src/pages/launchpad/launchPadPage';
@@ -41,6 +41,7 @@ function App() {
   return (
     <BrowserRouter>
           <FloatingButtons />
+          <TechspardhaPopup />
       <Routes>
         {/* Homepage without layout wrapper */}
         <Route path="/" element={<Home1 />} />

@@ -7,12 +7,13 @@
     @apply box-border;
   }
 
-  body {
-    @apply m-0 p-0 antialiased;
-      font-family: 'JetBrains Mono', monospace;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+body {
+  @apply m-0 p-0 antialiased;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>') 12 12, auto;
+}
 
   html {
     @apply scroll-smooth;

@@ -20,14 +20,15 @@ const blogDropdown = [
   { name: "All Articles", path: "/blog" },
   { name: "Space Explorations", path: "/blog/space" },
   { name: "Astro Facts", path: "/blog/facts" },
+  { name: "Upcoming Launches", path: "/launchpad" },
 ];
 
 const navItems = [
   { name: "Home", path: "/" },
-  { name: "Teams", path: "/teams", dropdown: teamsDropdown },
   { name: "Events", path: "/events" },
-  { name: "Contact", path: "/contact" },
+  { name: "Teams", path: "/teams", dropdown: teamsDropdown },
   { name: "Blog", path: "/blog", dropdown: blogDropdown },
+  { name: "Contact", path: "/contact" },
   { name: "About Us", path: "/about" },
 
 ];
