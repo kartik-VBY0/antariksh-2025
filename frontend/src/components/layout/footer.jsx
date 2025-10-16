@@ -15,22 +15,23 @@ const footerSections = {
     { name: "Events", path: "/events" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/contact" },
-    { name: "Upcoming Launches", path: "/launchpad" },
   ],
   Teams: [
-    { name: "Core Management", path: "/teams/core-management" },
-    { name: "Design & Media", path: "/teams/design-media" },
-    { name: "Web & Tech", path: "/teams/web-tech" },
-    { name: "Discussion", path: "/teams/discussion" },
-    { name: "Kalpa", path: "/teams/kalpa" },
+
     { name: "Observatory", path: "/teams/observatory" },
     { name: "Newsletter", path: "/teams/newsletter" },
+    { name: "Web & Tech", path: "/teams/web-tech" },
+    { name: "Design & Media", path: "/teams/design-media" },
+    { name: "Kalpa", path: "/teams/kalpa" },
     { name: "Khagol Quizzing", path: "/teams/khagol" },
+    { name: "Discussion", path: "/teams/discussion" },
+    { name: "Core Management", path: "/teams/core-management" },
   ],
   Blog: [
     { name: "All Articles", path: "/blog" },
     { name: "Space Explorations", path: "/blog/space" },
     { name: "Astro Facts", path: "/blog/facts" },
+    { name: "Upcoming Launches", path: "/launchpad" },
   ],
 };
 

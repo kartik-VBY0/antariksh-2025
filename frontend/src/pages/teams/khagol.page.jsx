@@ -41,7 +41,7 @@ const fadeUp = {
 // --- Component ---
 export default function KhagolPage() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-black via-[#0b0f1a] to-[#04070f] text-white overflow-hidden">
+    <div className="relative min-h-screen  text-white overflow-hidden">
       <Navbar />
 
       {/* Hero Section */}
@@ -65,7 +65,7 @@ export default function KhagolPage() {
         >
           Khagol is Antariksh’s curiosity engine — a hands-on community that turns wonder into action.
           Every week we craft tight, high-energy quizzes and puzzle rounds (GK, historical deep-dives, rapid-fire lightning rounds)
-          alongside visual challenges like <span className="text-cyan-300 font-medium">“Spot the Location”</span> and the X/Y Mystery Rounds.
+          alongside visual challenges like <span className="text-blue-300 font-medium">“Spot the Location”</span> and the X/Y Mystery Rounds.
           Beyond points and podiums, Khagol teaches people to observe carefully, think laterally, and communicate complex ideas simply —
           through live observation nights, themed quiz series, and collaborative research projects that bring the night sky into the classroom.
         </motion.p>
@@ -78,7 +78,7 @@ export default function KhagolPage() {
           variants={fadeUp}
           custom={0.45}
         >
-          <strong className="text-cyan-300">What we do:</strong> run weekly trivia drops, host inter-college contests (AstroLeague),
+          <strong className="text-blue-300">What we do:</strong> run weekly trivia drops, host inter-college contests (AstroLeague),
           organize telescope observation sessions, and design curiosity-first events that sharpen research, visual literacy and quick reasoning.
           Join Khagol if you want to learn how to read the sky, build memorable puzzles, and compete with a community that loves questions as much as answers.
         </motion.div>
@@ -87,7 +87,7 @@ export default function KhagolPage() {
       {/* Missions Section */}
       <section className="px-6 md:px-16 py-16">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-center text-cyan-300 mb-16"
+          className="text-4xl md:text-5xl font-bold text-center text-blue-300 mb-16"
           initial="hidden"
           whileInView="visible"
           variants={fadeUp}
@@ -100,7 +100,7 @@ export default function KhagolPage() {
           {missions.map((m, i) => (
             <motion.div
               key={i}
-              className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-violet-500/10 border border-cyan-400/30 backdrop-blur-md shadow-lg hover:shadow-cyan-400/40 transition-all duration-300"
+              className="p-8 rounded-3xl  shadow-lg hover:shadow-blue-400/40 transition-all duration-300"
               initial="hidden"
               whileInView="visible"
               variants={fadeUp}
@@ -112,7 +112,7 @@ export default function KhagolPage() {
               }}
             >
               <div className="text-6xl mb-4 text-center">{m.icon}</div>
-              <h3 className="text-2xl font-bold text-cyan-300 mb-3 text-center">
+              <h3 className="text-2xl font-bold text-blue-300 mb-3 text-center">
                 {m.title}
               </h3>
               <p className="text-gray-300 text-lg leading-relaxed text-center">
@@ -122,42 +122,7 @@ export default function KhagolPage() {
           ))}
         </div>
       </section>
-      {/* Join Section */}
-      <section className="text-center py-24 px-6 bg-gradient-to-t from-cyan-900/40 to-transparent">
-        <motion.h3
-          className="text-4xl font-extrabold text-cyan-300 mb-4 drop-shadow-lg"
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp}
-          viewport={{ once: true }}
-        >
-          Ready to Explore the Cosmos?
-        </motion.h3>
-        <motion.p
-          className="text-gray-400 mb-8 max-w-xl mx-auto text-lg"
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp}
-          custom={0.2}
-          viewport={{ once: true }}
-        >
-          Join Khagol today and become part of Antariksh’s most curious, quiz-loving community — 
-          where every question brings you closer to the stars.
-        </motion.p>
-        <motion.a
-          href="/contact"
-          className="inline-block bg-white text-black font-extrabold px-10 py-4 rounded-full shadow-xl border-2 border-transparent hover:border-cyan-400 hover:shadow-cyan-400/50 transition-all duration-300 text-lg tracking-wide"
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp}
-          custom={0.4}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          viewport={{ once: true }}
-        >
-          Join the Quest 🌌
-        </motion.a>
-      </section>
+
 
       <Footer />
     </div>
