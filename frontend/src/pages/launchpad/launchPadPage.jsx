@@ -11,22 +11,28 @@ const LaunchPadPage = () => {
   const [selectedLaunch, setSelectedLaunch] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchLaunches = async () => {
-      try {
-        const res = await fetch(
-          "https://ll.thespacedevs.com/2.0.0/launch/upcoming/?limit=200"
-        );
-        const data = await res.json();
-        setLaunches(data.results || []);
-      } catch (err) {
-        console.error("Error fetching launches:", err);
-      } finally {
-        setLoading(false);
+
+const API_URL = process.env.REACT_APP_LAUNCH;
+useEffect(() => {
+  const fetchLaunches = async () => {
+    try {
+      if (!API_URL) {
+        console.warn('REACT_APP_LAUNCH is not defined!');
+        return;
       }
-    };
-    fetchLaunches();
-  }, []);
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      setLaunches(data.results || []);
+    } catch (err) {
+      console.error('Error fetching launches:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchLaunches();
+}, []);
+
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);

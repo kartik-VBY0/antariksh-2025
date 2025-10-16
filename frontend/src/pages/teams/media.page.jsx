@@ -4,12 +4,6 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 import Button from "../../components/ui/Button";
 
-const designTeam = [
-  { name: "Aarav Mehta", role: "Design Head", image: "" },
-  { name: "Sneha Sharma", role: "Graphics Lead", image: "" },
-  { name: "Rohan Kapoor", role: "Video Editor", image: "" },
-  { name: "Priya Verma", role: "Social Media Designer", image: "" },
-];
 
 const DesignMediaPage = () => {
   return (

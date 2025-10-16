@@ -4,12 +4,7 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/footer";
 import Button from "../../components/ui/Button";
 
-const managementTeam = [
-  { name: "Garvit Gupta", role: "President", image: "" },
-  { name: "Diksha Dutta", role: "Vice President", image: "" },
-  { name: "Raghvi Gupta", role: "Sponsorship Head", image: "" },
-  { name: "Bhavya Arya", role: "Events Coordinator", image: "" },
-];
+
 
 const ManagementSponsorshipPage = () => {
   return (
