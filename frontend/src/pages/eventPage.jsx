@@ -3,8 +3,9 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars, useTexture, Html } from "@react-three/drei";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/footer";
-import SlidingBackground from "../components/layout/RotatingBackground";
 import { motion, AnimatePresence } from "framer-motion";
+import StarBackground from "../components/layout/StarBackground"; // ✅ Added import
+import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 
 // --- Event Data ---
 const events = [
@@ -12,6 +13,7 @@ const events = [
     id: 1,
     title: "Astrohunt",
     date: "",
+    link: "#",
     description:
       "Team-based treasure hunt where teams solve astronomy-related clues to reach the final destination.",
     image:
@@ -22,6 +24,7 @@ const events = [
     id: 2,
     title: "Astroarena",
     date: "",
+    link: "#",
     description:
       "A Squid Game-inspired team event with space-themed elimination challenges.",
     image:
@@ -33,6 +36,7 @@ const events = [
     id: 3,
     title: "Prakshepan",
     date: "",
+    link: "#",
     description:
       "Design and launch your own water bottle rocket with creativity and precision.",
     image:
@@ -44,6 +48,7 @@ const events = [
     id: 4,
     title: "Zathura",
     date: "",
+    link: "#",
     description:
       "Two-round event blends astrohunt with a space-themed board game for an unforgettable experience!",
     image:
@@ -55,6 +60,7 @@ const events = [
     id: 5,
     title: "Stellar Screens",
     date: "",
+    link: "#",
     description:
       "Cinematic science screenings exploring the cosmos through sci-fi and science shows.",
     image:
@@ -97,9 +103,7 @@ function FloatingCard({ event, index, position, onClick }) {
   useFrame(({ clock }) => {
     if (!isMobile) {
       const t = clock.getElapsedTime();
-      // Floating up-down
       ref.current.position.y = position[1] + Math.sin(t * 0.6 + index) * 0.2;
-      // Orbit around Y-axis (same as Earth's rotation axis)
       const orbitSpeed = 0.15;
       const angle = (index / 5) * Math.PI * 2 + t * orbitSpeed;
       const radius = 6;
@@ -155,7 +159,20 @@ function HtmlCard({ event }) {
         />
       )}
       <p className="text-sm font-bold text-blue-300">{event.title}</p>
-      <p className="text-xs text-gray-300">{event.date}</p>
+      <a
+  href={event.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={(e) => e.stopPropagation()}
+  className="m-2 inline-block text-sm font-medium text-blue-300 hover:text-white transition-colors duration-300 
+             bg-blue-500/10 hover:bg-blue-500/20 px-3 py-1.5 rounded-full border border-blue-400/30 
+             shadow-[0_0_10px_rgba(59,130,246,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+    🚀
+  </span>{" "} Register Here
+</a>
+
       <p className="text-xs text-gray-400 mt-1">{event.description}</p>
     </motion.div>
   );
@@ -211,20 +228,20 @@ export default function EventPage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Initial even positions (aligned to equator)
   const radius = 6;
-  const verticalOffset = 2.0; // ⬆️ raise cards a bit
-const positions = events.map((_, i) => {
-  const angle = (i / events.length) * Math.PI * 2;
-  return [Math.cos(angle) * radius, verticalOffset, Math.sin(angle) * radius];
-});
-
- 
+  const verticalOffset = 2.0;
+  const positions = events.map((_, i) => {
+    const angle = (i / events.length) * Math.PI * 2;
+    return [Math.cos(angle) * radius, verticalOffset, Math.sin(angle) * radius];
+  });
 
   return (
     <>
       <Navbar />
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-black">        
+
+      
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <StarBackground speedFactor={0.05} starCount={2500} />
       </div>
 
       {/* --- Desktop 3D Layout --- */}
@@ -233,7 +250,15 @@ const positions = events.map((_, i) => {
           <Canvas camera={{ position: [0, 2, 10], fov: 50 }}>
             <ambientLight intensity={4.0} />
             <pointLight position={[10, 10, 10]} intensity={2} />
-            <Stars radius={100} depth={80} count={5000} factor={4} saturation={0} fade speed={1} />
+            <Stars
+              radius={100}
+              depth={80}
+              count={3000}
+              factor={4}
+              saturation={0}
+              fade
+              speed={1}
+            />
             <Earth />
             {events.map((event, i) => (
               <FloatingCard
@@ -257,15 +282,9 @@ const positions = events.map((_, i) => {
 
       {/* --- Mobile Layout --- */}
       {isMobile && (
-        <section className="relative flex flex-col items-center w-full min-h-screen px-4 py-6 space-y-6 bg-black overflow-hidden">
+        <section className="relative flex flex-col items-center w-full min-h-screen px-4 py-6 space-y-6 overflow-hidden bg-black/80 backdrop-blur-sm">
           <div className="absolute inset-0 -z-10">
-            <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-              <ambientLight intensity={2.5} />
-              <pointLight position={[10, 10, 10]} intensity={1.5} />
-              <Stars radius={80} depth={60} count={4000} factor={3} saturation={0} fade speed={0.5} />
-              
-              <OrbitControls enableZoom={false} enableRotate={false} />
-            </Canvas>
+            <StarBackground speedFactor={0.05} starCount={1800} /> 
           </div>
 
           {events.map((event) => (
@@ -280,11 +299,27 @@ const positions = events.map((_, i) => {
               <img
                 src={event.image}
                 alt={event.title}
-                className="w-full h-32 object-cover rounded-lg mb-3 border border-blue-500/30"
+                className="w-full h-42 object-cover rounded-lg mb-3 border border-blue-500/30"
               />
               <h3 className="text-lg font-bold text-blue-300">{event.title}</h3>
-              <p className="text-xs text-gray-300">{event.date}</p>
+              <a
+  href={event.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={(e) => e.stopPropagation()}
+  className="m-2 inline-block text-sm font-medium text-blue-300 hover:text-white transition-colors duration-300 
+             bg-blue-500/10 hover:bg-blue-500/20 px-3 py-1.5 rounded-full border border-blue-400/30 
+             shadow-[0_0_10px_rgba(59,130,246,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+    🚀
+  </span>{" "} Register Here
+</a>
+
+
+              
               <p className="text-sm text-gray-400 mt-1">{event.description}</p>
+              
               <button className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white text-sm">
                 Know More
               </button>
@@ -293,7 +328,10 @@ const positions = events.map((_, i) => {
         </section>
       )}
 
-      <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+      <EventDetailsModal
+        event={selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+      />
       <Footer />
     </>
   );
